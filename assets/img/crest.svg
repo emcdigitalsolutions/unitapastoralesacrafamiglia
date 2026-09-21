@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 88" role="img" aria-label="Stemma Unità Pastorale Sacra Famiglia">
+  <defs>
+    <linearGradient id="crBody" x1="0" y1="0" x2="0" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2c356b"/><stop offset="1" stop-color="#151b3c"/>
+    </linearGradient>
+    <linearGradient id="crGold" x1="12" y1="8" x2="60" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e7cd8c"/><stop offset=".5" stop-color="#c4a052"/><stop offset="1" stop-color="#a67f34"/>
+    </linearGradient>
+  </defs>
+  <!-- Arco ogivale -->
+  <path d="M12,84 V34 C12,17 36,6 36,6 C36,6 60,17 60,34 V84 Z" fill="url(#crBody)"/>
+  <path d="M12,84 V34 C12,17 36,6 36,6 C36,6 60,17 60,34 V84" fill="none" stroke="url(#crGold)" stroke-width="2.4"/>
+  <path d="M16.5,80 V35 C16.5,20 36,10.5 36,10.5 C36,10.5 55.5,20 55.5,35 V80" fill="none" stroke="url(#crGold)" stroke-width=".9" opacity=".55"/>
+  <!-- Raggi di luce dietro la croce -->
+  <g stroke="url(#crGold)" stroke-width="1" opacity=".5" stroke-linecap="round">
+    <line x1="36" y1="46" x2="36" y2="24"/>
+    <line x1="36" y1="46" x2="24" y2="30"/>
+    <line x1="36" y1="46" x2="48" y2="30"/>
+    <line x1="36" y1="46" x2="20" y2="40"/>
+    <line x1="36" y1="46" x2="52" y2="40"/>
+    <line x1="36" y1="46" x2="28" y2="26"/>
+    <line x1="36" y1="46" x2="44" y2="26"/>
+  </g>
+  <!-- Stella (Betlemme) all'apice -->
+  <path d="M36,14 l1.4,3.2 l3.4,.3 l-2.6,2.3 .8,3.4 -3-1.8 -3,1.8 .8-3.4 -2.6-2.3 3.4-.3Z" fill="url(#crGold)"/>
+  <!-- Croce latina -->
+  <g fill="url(#crGold)">
+    <rect x="34.2" y="34" width="3.6" height="30" rx="1.2"/>
+    <rect x="27.5" y="41.5" width="17" height="3.6" rx="1.2"/>
+  </g>
+  <!-- Base -->
+  <rect x="21" y="70" width="30" height="2" rx="1" fill="url(#crGold)" opacity=".8"/>
+  <circle cx="36" cy="76.5" r="1.6" fill="url(#crGold)"/>
+</svg>

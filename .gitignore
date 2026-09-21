@@ -1,0 +1,13 @@
+# Tenere il CNAME fuori dal repo finché il dominio non è registrato e il DNS configurato,
+# altrimenti GitHub Pages rompe l'anteprima *.github.io.
+# Al go-live: rimuovere questa riga e committare il CNAME.
+CNAME
+
+# Artefatti di sviluppo
+_shots/
+render-check*.js
+
+# Sistema
+.DS_Store
+Thumbs.db
+node_modules/

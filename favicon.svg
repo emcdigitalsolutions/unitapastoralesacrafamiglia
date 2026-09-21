@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sacra Famiglia">
+  <defs>
+    <linearGradient id="fvBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2c356b"/><stop offset="1" stop-color="#151b3c"/>
+    </linearGradient>
+    <linearGradient id="fvG" x1="12" y1="6" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e7cd8c"/><stop offset=".55" stop-color="#c4a052"/><stop offset="1" stop-color="#a67f34"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#fvBg)"/>
+  <path d="M18,52 V30 C18,20 32,13 32,13 C32,13 46,20 46,30 V52" fill="none" stroke="url(#fvG)" stroke-width="2.6"/>
+  <path d="M32,18 l1.5,3.4 3.7,.3 -2.8,2.4 .9,3.6 -3.3-1.9 -3.3,1.9 .9-3.6 -2.8-2.4 3.7-.3Z" fill="url(#fvG)"/>
+  <g fill="url(#fvG)">
+    <rect x="30" y="30" width="4" height="20" rx="1.3"/>
+    <rect x="23.5" y="36.5" width="17" height="4" rx="1.3"/>
+  </g>
+</svg>
