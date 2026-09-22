@@ -88,11 +88,11 @@
 
         <div class="amounts" role="group" aria-label="Importo della donazione">
           <button type="button" class="amount" data-amount="10" aria-pressed="false">10€<small><span data-lang-it>Offerta</span><span data-lang-en>Gift</span></small></button>
-          <button type="button" class="amount active" data-amount="20" aria-pressed="true">20€<small><span data-lang-it>Sostieni</span><span data-lang-en>Support</span></small></button>
-          <button type="button" class="amount" data-amount="50" aria-pressed="false">50€<small><span data-lang-it>Generoso</span><span data-lang-en>Generous</span></small></button>
+          <button type="button" class="amount" data-amount="25" aria-pressed="false">25€<small><span data-lang-it>Sostieni</span><span data-lang-en>Support</span></small></button>
+          <button type="button" class="amount active" data-amount="50" aria-pressed="true">50€<small><span data-lang-it>Generoso</span><span data-lang-en>Generous</span></small></button>
           <button type="button" class="amount" data-amount="100" aria-pressed="false">100€<small><span data-lang-it>Benefattore</span><span data-lang-en>Benefactor</span></small></button>
-          <button type="button" class="amount" data-amount="250" aria-pressed="false">250€<small><span data-lang-it>Grande cuore</span><span data-lang-en>Great heart</span></small></button>
-          <button type="button" class="amount" data-amount="libera" aria-pressed="false" style="font-size:1.05rem">✦<small><span data-lang-it>Libero</span><span data-lang-en>Custom</span></small></button>
+          <button type="button" class="amount" data-amount="150" aria-pressed="false">150€<small><span data-lang-it>Grande cuore</span><span data-lang-en>Great heart</span></small></button>
+          <button type="button" class="amount" data-amount="200" aria-pressed="false">200€<small><span data-lang-it>Sostenitore</span><span data-lang-en>Patron</span></small></button>
         </div>
 
         <button id="dona-ora" class="btn btn-gold btn-lg" style="width:100%">
@@ -224,13 +224,13 @@
 (function () {
   var PAYMENT_LINKS = {
     '10':  '',   // https://buy.stripe.com/...
-    '20':  '',
+    '25':  '',
     '50':  '',
     '100': '',
-    '250': '',
-    'libera': ''  // Payment Link "il cliente sceglie l'importo"
+    '150': '',
+    '200': ''
   };
-  var selected = '20';
+  var selected = '50';
   var tiles = document.querySelectorAll('.amount');
   tiles.forEach(function (t) {
     t.addEventListener('click', function () {

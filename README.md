@@ -44,8 +44,8 @@ Finché non ci sono, il sito mostra segnaposto eleganti ("Foto in arrivo") e sfo
 - **Bonifico**: sostituire in `donazioni.html` l'IBAN segnaposto (`#iban-value`) e l'intestazione
   (`#dona-holder`) con i dati reali forniti dalla parrocchia.
 - **Online (Stripe)**: aprire l'account Stripe intestato alla parrocchia (uno per cliente, EMC come
-  team member), creare i Payment Links per i tagli 10/20/50/100/250 € + uno "il cliente sceglie
-  l'importo", e incollare gli URL nell'oggetto `PAYMENT_LINKS` in fondo a `donazioni.html`.
+  team member), creare i Payment Links per i tagli **10/25/50/100/150/200 €**, e incollare gli URL
+  nell'oggetto `PAYMENT_LINKS` in fondo a `donazioni.html`.
   Finché sono vuoti, il pulsante "Dona ora" invita a usare il bonifico.
 
 ## Go-live dominio (unitapastoralesacrafamiglia.it)
