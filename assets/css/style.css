@@ -510,6 +510,50 @@ html[lang="en"] [data-lang-en]{display:revert}
 @media(max-width:640px){.notice-card{grid-template-columns:1fr;text-align:center}
   .notice-card .poster{margin-inline:auto;width:min(240px,70%)}.notice-meta{justify-content:center}}
 
+/* ---------- Card evento cliccabile ---------- */
+.church-card.event{cursor:pointer}
+.church-card.event:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.church-card.event .count-badge{position:absolute;top:1rem;right:1rem;z-index:1;display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.78rem;font-weight:600;color:#fff;background:rgba(17,22,52,.55);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:.32rem .7rem}
+.church-card.event .count-badge svg{width:15px;height:15px}
+.church-card.event .more{margin-top:1.1rem;background:rgba(196,160,82,.16);border:1px solid rgba(220,192,130,.4);
+  padding:.42rem .9rem;border-radius:100px}
+.church-card.event .more svg{width:16px;height:16px}
+
+/* ---------- Lightbox / galleria eventi ---------- */
+.lightbox{position:fixed;inset:0;z-index:400;display:none;flex-direction:column;
+  background:rgba(9,12,30,.93);backdrop-filter:blur(10px)}
+.lightbox.open{display:flex;animation:lbfade .3s var(--ease)}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
+body.lb-lock{overflow:hidden}
+.lb-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem clamp(1rem,3vw,2rem);color:#fff;flex:none}
+.lb-title{font-family:var(--ff-display);font-size:clamp(1.2rem,2.6vw,1.8rem);color:#fff}
+.lb-top-right{display:flex;align-items:center;gap:1rem;flex:none}
+.lb-count{font-size:.85rem;color:var(--gold-2);letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lb-close{width:44px;height:44px;border-radius:50%;color:#fff;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;transition:background .3s,transform .3s}
+.lb-close svg{width:22px;height:22px}
+.lb-close:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
+.lb-stage{position:relative;flex:1;display:grid;place-items:center;margin:0;min-height:0;padding:0 clamp(3.2rem,8vw,5.5rem)}
+.lb-img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.85);opacity:0;transition:opacity .35s var(--ease)}
+.lb-img.ready{opacity:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;color:#fff;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;
+  transition:background .3s,color .3s;z-index:2}
+.lb-nav svg{width:24px;height:24px}
+.lb-nav:hover{background:var(--gold);color:#2a2109;border-color:var(--gold)}
+.lb-prev{left:clamp(.6rem,2vw,1.4rem)}.lb-next{right:clamp(.6rem,2vw,1.4rem)}
+.lb-thumbs{display:flex;gap:.5rem;overflow-x:auto;padding:1rem clamp(1rem,3vw,2rem) 1.4rem;flex:none;scrollbar-width:thin;scrollbar-color:var(--gold-deep) transparent}
+.lb-thumbs::-webkit-scrollbar{height:8px}.lb-thumbs::-webkit-scrollbar-thumb{background:var(--gold-deep);border-radius:8px}
+.lb-thumbs button{flex:none;width:92px;height:66px;border-radius:8px;overflow:hidden;opacity:.5;padding:0;
+  border:2px solid transparent;transition:opacity .3s,border-color .3s;background:#000}
+.lb-thumbs button img{width:100%;height:100%;object-fit:cover}
+.lb-thumbs button.active{opacity:1;border-color:var(--gold-2)}
+.lb-thumbs button:hover{opacity:.85}
+@media(max-width:640px){.lb-nav{width:44px;height:44px}.lb-thumbs button{width:74px;height:54px}}
+
 /* ---------- Locandina (immagine poster) ---------- */
 .locandina{max-width:430px;margin:2.4rem auto 0;border-radius:var(--radius);overflow:hidden;
   border:1px solid var(--line-gold);box-shadow:var(--shadow)}
