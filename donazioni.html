@@ -111,23 +111,37 @@
       <div class="dona-card d2" data-reveal>
         <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg><span data-lang-it>Bonifico bancario</span><span data-lang-en>Bank transfer</span></span>
         <h3 data-lang-it>Tramite bonifico</h3><h3 data-lang-en>By bank transfer</h3>
-        <p style="color:#54545f;margin-top:.5rem" data-lang-it>Puoi effettuare la tua offerta con un bonifico usando i dati qui sotto.</p>
-        <p style="color:#54545f;margin-top:.5rem" data-lang-en>You can make your offering with a bank transfer using the details below.</p>
+        <p style="color:#54545f;margin-top:.5rem" data-lang-it>Puoi devolvere la tua offerta a una delle due parrocchie dell'Unità Pastorale, usando i dati qui sotto.</p>
+        <p style="color:#54545f;margin-top:.5rem" data-lang-en>You can send your offering to either of the two parishes of the Pastoral Unit, using the details below.</p>
 
         <div class="mt-2">
+          <!-- Parrocchia San Giuseppe -->
           <div class="dona-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
-            <div><strong data-lang-it>Intestazione</strong><strong data-lang-en>Account holder</strong><br><span id="dona-holder">Parrocchia — Unità Pastorale Sacra Famiglia</span></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-4 7 4v11M9 21v-6h6v6"/></svg>
+            <div><strong>Parrocchia San Giuseppe</strong><br><span style="font-size:.85rem;color:var(--muted)"><span data-lang-it>Filiale di Campobello di Licata</span><span data-lang-en>Campobello di Licata branch</span></span></div>
           </div>
-          <div style="margin:.6rem 0 .2rem;font-size:.82rem;font-weight:600;color:var(--indigo);letter-spacing:.02em">IBAN</div>
           <div class="iban-box">
-            <span class="iban-val" id="iban-value">IT00 X000 0000 0000 0000 0000 000</span>
+            <span class="iban-val" data-iban>IT76 X050 3482 8700 0000 0002 599</span>
             <button type="button" data-copy-iban>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
               <span data-lang-it>Copia</span><span data-lang-en>Copy</span>
             </button>
           </div>
-          <div class="dona-detail" style="margin-top:.8rem">
+
+          <!-- Parrocchia Gesù e Maria -->
+          <div class="dona-detail" style="margin-top:1.1rem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-4 7 4v11M9 21v-6h6v6"/></svg>
+            <div><strong>Parrocchia Gesù e Maria</strong><br><span style="font-size:.85rem;color:var(--muted)"><span data-lang-it>Filiale di Campobello di Licata</span><span data-lang-en>Campobello di Licata branch</span></span></div>
+          </div>
+          <div class="iban-box">
+            <span class="iban-val" data-iban>IT48 U050 3482 8700 0000 0002 596</span>
+            <button type="button" data-copy-iban>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              <span data-lang-it>Copia</span><span data-lang-en>Copy</span>
+            </button>
+          </div>
+
+          <div class="dona-detail" style="margin-top:1.1rem">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3Z"/></svg>
             <div><strong data-lang-it>Causale consigliata</strong><strong data-lang-en>Suggested reason</strong><br>
               <span data-lang-it>«Offerta liberale — Unità Pastorale Sacra Famiglia»</span>
@@ -246,14 +260,17 @@
     if (link) { window.location.href = link; }
     else { (window.upsToast || window.alert)(en ? 'Online donations are being activated — for now please use the bank transfer.' : 'Le donazioni online sono in attivazione — per ora usa il bonifico bancario qui accanto.'); }
   });
-  var cp = document.querySelector('[data-copy-iban]');
-  if (cp) cp.addEventListener('click', function () {
-    var en = document.documentElement.lang === 'en';
-    var iban = (document.getElementById('iban-value').textContent || '').replace(/\s+/g, ' ').trim();
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(iban).then(function () { (window.upsToast || window.alert)(en ? 'IBAN copied' : 'IBAN copiato'); })
-        .catch(function () { (window.upsToast || window.alert)(iban); });
-    } else { (window.upsToast || window.alert)(iban); }
+  document.querySelectorAll('[data-copy-iban]').forEach(function (cp) {
+    cp.addEventListener('click', function () {
+      var en = document.documentElement.lang === 'en';
+      var box = cp.closest('.iban-box');
+      var val = box && box.querySelector('.iban-val');
+      var iban = ((val && val.textContent) || '').replace(/\s+/g, '').trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(iban).then(function () { (window.upsToast || window.alert)(en ? 'IBAN copied' : 'IBAN copiato'); })
+          .catch(function () { (window.upsToast || window.alert)(iban); });
+      } else { (window.upsToast || window.alert)(iban); }
+    });
   });
 })();
 </script>

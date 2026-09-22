@@ -7,6 +7,10 @@ CNAME
 _shots/
 render-check*.js
 
+# Foto originali/sorgenti (si pubblicano solo le versioni ottimizzate in assets/img/).
+# Include gli screenshot con IBAN e materiali riservati: NON pubblicare.
+images/
+
 # Sistema
 .DS_Store
 Thumbs.db

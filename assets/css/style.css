@@ -471,6 +471,58 @@ html[lang="en"] [data-lang-en]{display:revert}
 .secure-note{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--muted);margin-top:1rem}
 .secure-note svg{width:16px;height:16px;color:var(--gold-deep)}
 
+/* ---------- Banner immersivo (foto + citazione) ---------- */
+.banner-quote{position:relative;min-height:clamp(380px,54vw,580px);display:grid;place-items:center;
+  overflow:hidden;isolation:isolate;color:#fff;text-align:center}
+.banner-quote>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%;z-index:-2;
+  transform:scale(1.02)}
+.banner-quote::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(17,22,52,.78),rgba(23,29,66,.5) 45%,rgba(17,22,52,.85))}
+.banner-quote .bq-inner{max-width:840px;padding:clamp(3.5rem,8vw,6.5rem) 1.4rem}
+.banner-quote .cross{width:30px;height:30px;color:var(--gold-2);margin:0 auto 1.5rem;opacity:.9}
+.banner-quote blockquote{font-family:var(--ff-display);font-style:italic;font-weight:500;
+  font-size:clamp(1.55rem,3.5vw,2.7rem);line-height:1.32;color:#fff;text-shadow:0 2px 34px rgba(0,0,0,.45);margin:0}
+.banner-quote cite{display:block;margin-top:1.4rem;font-family:var(--ff-body);font-style:normal;
+  font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
+.banner-quote .bq-label{display:block;margin-top:.4rem;font-size:.74rem;letter-spacing:.14em;color:#cdd0e6;
+  text-transform:none;font-weight:400}
+
+/* ---------- Card evento (Momenti di comunità) — variante di .church-card ---------- */
+.church-card.event{min-height:340px}
+.church-card.event h3{font-size:clamp(1.3rem,2.4vw,1.6rem)}
+.church-card .kicker svg{width:14px;height:14px;vertical-align:-2px;margin-right:.35rem}
+
+/* ---------- Avviso in evidenza (locandina + testo) ---------- */
+.notice-card{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.4rem,4vw,2.8rem);align-items:center;
+  background:var(--paper);border:1px solid var(--line-gold);border-radius:var(--radius-lg);
+  padding:clamp(1.4rem,3vw,2.2rem);box-shadow:var(--shadow)}
+.notice-card .poster{width:clamp(150px,24vw,220px);border-radius:16px;overflow:hidden;flex:none;
+  border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.notice-card .poster img{width:100%;height:auto;display:block}
+.notice-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.7rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:#2a2109;background:linear-gradient(135deg,var(--gold-2),var(--gold));
+  padding:.35rem .85rem;border-radius:100px;margin-bottom:.9rem}
+.notice-chip svg{width:14px;height:14px}
+.notice-meta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.notice-meta span{display:inline-flex;align-items:center;gap:.45rem;font-size:.86rem;font-weight:600;color:var(--indigo);
+  background:var(--ivory-2);border:1px solid var(--line);border-radius:100px;padding:.4rem .9rem}
+.notice-meta svg{width:15px;height:15px;color:var(--gold-deep)}
+@media(max-width:640px){.notice-card{grid-template-columns:1fr;text-align:center}
+  .notice-card .poster{margin-inline:auto;width:min(240px,70%)}.notice-meta{justify-content:center}}
+
+/* ---------- Locandina (immagine poster) ---------- */
+.locandina{max-width:430px;margin:2.4rem auto 0;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--line-gold);box-shadow:var(--shadow)}
+.locandina img{width:100%;height:auto;display:block}
+.locandina figcaption{padding:.7rem 1rem;text-align:center;font-size:.8rem;color:var(--muted);
+  background:var(--paper);border-top:1px solid var(--line)}
+
+/* ---------- Blocco orario (celebrazioni) ---------- */
+.hours .hh .tag{margin-left:auto;font-family:var(--ff-body);font-size:.66rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold-2);border:1px solid rgba(220,192,130,.4);border-radius:100px;padding:.2rem .6rem}
+.hours ul li.sub{background:var(--ivory);font-size:.82rem;color:var(--muted);padding-top:.5rem;padding-bottom:.5rem}
+.hours ul li.sub span{color:var(--muted)!important;font-weight:400!important}
+
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
   .g-4{grid-template-columns:repeat(2,1fr)}
