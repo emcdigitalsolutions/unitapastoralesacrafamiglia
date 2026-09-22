@@ -302,6 +302,15 @@ body.nav-open .nav-toggle span{background:#fff}
 .feast h3{font-size:1.18rem;margin-bottom:.35rem}
 .feast p{font-size:.94rem;color:#54545f}
 
+.feast-photo{width:100%;height:190px;object-fit:cover;border-radius:12px;margin-top:1.1rem;border:1px solid var(--line)}
+
+/* Banner sacerdoti */
+.clergy-banner{margin:0 auto 2.6rem;max-width:900px;border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line);position:relative}
+.clergy-banner img{width:100%;height:clamp(240px,34vw,360px);object-fit:cover;object-position:center 30%;display:block}
+.clergy-banner figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.4rem .9rem;
+  background:linear-gradient(to top,rgba(17,22,52,.85),transparent);color:#fff;font-size:.9rem;text-align:center}
+
 /* ---------- Prose (pagine testo) ---------- */
 .prose p{margin-bottom:1.2rem;color:#43434f}
 .prose h3{margin:2.2rem 0 .8rem}
