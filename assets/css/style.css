@@ -522,6 +522,7 @@ html[lang="en"] [data-lang-en]{display:revert}
   text-transform:uppercase;color:var(--gold-2);border:1px solid rgba(220,192,130,.4);border-radius:100px;padding:.2rem .6rem}
 .hours ul li.sub{background:var(--ivory);font-size:.82rem;color:var(--muted);padding-top:.5rem;padding-bottom:.5rem}
 .hours ul li.sub span{color:var(--muted)!important;font-weight:400!important}
+.hours ul li .val-gold{color:var(--gold-deep);font-weight:600;font-variant-numeric:tabular-nums}
 
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
