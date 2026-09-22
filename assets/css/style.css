@@ -303,6 +303,8 @@ body.nav-open .nav-toggle span{background:#fff}
 .feast p{font-size:.94rem;color:#54545f}
 
 .feast-photo{width:100%;height:190px;object-fit:cover;border-radius:12px;margin-top:1.1rem;border:1px solid var(--line)}
+.feast-photo.portrait{height:clamp(300px,60vw,360px);object-fit:contain;padding:10px;
+  background:radial-gradient(120% 82% at 50% 30%,#ffffff,var(--ivory-2))}
 
 /* ---------- Prose (pagine testo) ---------- */
 .prose p{margin-bottom:1.2rem;color:#43434f}
