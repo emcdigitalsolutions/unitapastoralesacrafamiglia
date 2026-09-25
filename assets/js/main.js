@@ -268,7 +268,10 @@
         var en = document.documentElement.lang === 'en';
         var box = cp.closest('.iban-box');
         var val = box && box.querySelector('.iban-val');
-        var iban = ((val && val.textContent) || '').replace(/\s+/g, '').trim();
+        var parts = val ? val.querySelectorAll('.ib-part') : [];
+        var txt = parts.length ? [].map.call(parts, function (p) { return p.textContent; }).join('') : ((val && val.textContent) || '');
+        var iban = txt.replace(/\s+/g, '').trim();
+        cp.classList.add('copied'); setTimeout(function () { cp.classList.remove('copied'); }, 2200);
         if (navigator.clipboard) {
           navigator.clipboard.writeText(iban).then(function () { toast(en ? 'IBAN copied' : 'IBAN copiato'); })
             .catch(function () { toast(iban); });
