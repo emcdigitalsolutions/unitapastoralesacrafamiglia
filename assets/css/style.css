@@ -576,7 +576,7 @@ body.lb-lock{overflow:hidden}
   .contact-grid{grid-template-columns:1fr}
   .dona-grid{grid-template-columns:1fr}
 }
-@media (max-width:820px){
+@media (max-width:1140px){
   .nav-toggle{display:block}
   .nav{
     position:fixed;inset:0;z-index:110;flex-direction:column;justify-content:center;align-items:center;gap:.3rem;
@@ -588,6 +588,13 @@ body.lb-lock{overflow:hidden}
   .nav a{font-family:var(--ff-display);font-size:2rem;padding:.45rem}
   .nav a::after{display:none}
   .nav a.nav-cta{border:0;padding:.45rem;margin-left:0;color:var(--gold-2)}
+}
+@media (min-width:1141px) and (max-width:1300px){
+  .nav{gap:.1rem}
+  .nav a{padding:.5rem .6rem;font-size:.89rem}
+  .nav a::after{left:.6rem;right:.6rem}
+}
+@media (max-width:820px){
   .g-2,.g-3{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr;gap:2rem}
   .gallery{grid-template-columns:repeat(2,1fr)}
@@ -704,3 +711,140 @@ body.lb-lock{overflow:hidden}
 @media(max-width:640px){.fund-card{grid-template-columns:1fr}.fund-media{min-height:0;aspect-ratio:4/3}
   .fund-media img{object-position:50% 8%}}
 @media(prefers-reduced-motion:reduce){.fund-status i{animation:none}}
+
+/* ---------- Fede e vita: bacheca cronologica ---------- */
+.fv-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-bottom:clamp(2rem,4vw,3rem)}
+.fv-filters button{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;border-radius:100px;
+  border:1px solid var(--line-gold);background:var(--paper);color:var(--indigo);font-weight:600;font-size:.88rem;
+  transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease)}
+.fv-filters button:hover{transform:translateY(-2px);border-color:var(--gold)}
+.fv-filters button b{min-width:1.45rem;height:1.45rem;border-radius:100px;display:inline-grid;place-items:center;
+  font-size:.72rem;background:rgba(196,160,82,.16);color:var(--gold-deep)}
+.fv-filters button.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.fv-filters button.active b{background:var(--gold);color:#2a2109}
+.fv-timeline{position:relative;max-width:1060px;margin:0 auto}
+.fv-timeline::before{content:"";position:absolute;left:54px;top:10px;bottom:10px;width:2px;
+  background:linear-gradient(180deg,rgba(196,160,82,0),var(--gold) 6%,var(--gold) 94%,rgba(196,160,82,0))}
+.fv-item{position:relative;display:grid;grid-template-columns:110px 1fr;gap:clamp(1.2rem,2.6vw,2rem);padding-bottom:clamp(1.6rem,3vw,2.4rem)}
+.fv-item[hidden]{display:none}
+.fv-date{position:relative;z-index:1;align-self:start;display:flex;flex-direction:column;align-items:center;gap:.1rem;
+  padding:.85rem .4rem .75rem;border-radius:20px;background:var(--paper);border:1px solid var(--line-gold);
+  box-shadow:var(--shadow-sm);text-align:center}
+.fv-date .d{font-family:var(--ff-display);font-size:2.6rem;line-height:1;font-weight:600;color:var(--indigo);font-variant-numeric:lining-nums}
+.fv-date .m{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.fv-date .y{font-size:.74rem;color:var(--muted)}
+.fv-date.evergreen svg{width:34px;height:34px;color:var(--gold-deep);margin-bottom:.2rem}
+.fv-item.is-next .fv-date{background:linear-gradient(150deg,var(--indigo),var(--indigo-3));border-color:var(--gold);
+  box-shadow:0 0 0 6px rgba(196,160,82,.18),var(--shadow)}
+.fv-item.is-next .fv-date .d{color:#fff}.fv-item.is-next .fv-date .m{color:var(--gold-2)}.fv-item.is-next .fv-date .y{color:#b9bedd}
+.fv-card{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:clamp(1.1rem,2.4vw,1.8rem);align-items:start;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(1rem,2vw,1.3rem);
+  box-shadow:var(--shadow-sm);transition:box-shadow .4s var(--ease),transform .4s var(--ease),border-color .4s}
+.fv-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);border-color:var(--line-gold)}
+.fv-item.is-next .fv-card{border-color:var(--line-gold);box-shadow:var(--shadow)}
+.fv-item.is-past .fv-card,.fv-item.is-past .fv-date{opacity:.62;filter:saturate(.6)}
+.fv-poster{position:relative;display:block;width:100%;padding:0;border-radius:14px;overflow:hidden;cursor:zoom-in;
+  aspect-ratio:3/4;background:var(--ivory-2);border:1px solid var(--line)}
+.fv-poster img{width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:transform .8s var(--ease)}
+.fv-poster:hover img{transform:scale(1.05)}
+.fv-poster:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.fv-zoom{position:absolute;left:.6rem;bottom:.6rem;display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;
+  color:#fff;background:rgba(17,22,52,.72);backdrop-filter:blur(6px);border-radius:100px;padding:.32rem .7rem}
+.fv-zoom svg{width:14px;height:14px}
+.fv-body{padding:.3rem .3rem .3rem 0;min-width:0}
+.fv-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-bottom:.7rem}
+.fv-tag,.fv-flag,.fv-status{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;border-radius:100px;padding:.32rem .75rem}
+.fv-status[hidden]{display:none}
+.fv-tag.parrocchia{background:rgba(196,160,82,.16);color:var(--gold-deep)}
+.fv-tag.chiesa{background:rgba(35,42,82,.09);color:var(--indigo)}
+.fv-tag.vita{background:rgba(46,125,91,.12);color:#2e7d5b}
+.fv-flag{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#2a2109}
+.fv-status.soon{background:var(--indigo);color:#fff}
+.fv-status.now{background:#2e7d5b;color:#fff}
+.fv-status.past{background:#e7e4df;color:#77747c}
+.fv-body h3{font-size:clamp(1.45rem,2.6vw,1.9rem);line-height:1.2;color:var(--indigo);margin-bottom:.8rem}
+.fv-when{display:grid;gap:.45rem;margin-bottom:.9rem}
+.fv-when-row{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;font-weight:600;color:var(--indigo);line-height:1.45}
+.fv-when-row svg{width:17px;height:17px;flex:none;margin-top:.12rem;color:var(--gold-deep)}
+.fv-body > p{color:#4a4a57;font-size:.97rem;margin-bottom:.4rem}
+.fv-facts{list-style:none;padding:0;margin:.9rem 0 0;display:grid;gap:.55rem}
+.fv-facts li{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;color:#4a4a57;line-height:1.55}
+.fv-facts li svg{width:16px;height:16px;flex:none;margin-top:.22rem;color:var(--gold-deep)}
+.fv-facts strong,.fv-body > p strong{color:var(--indigo)}
+.fv-quote{display:flex;gap:.7rem;align-items:flex-start;margin:1.1rem 0 0;padding:.9rem 1.1rem;border-radius:14px;
+  background:var(--ivory);border-left:3px solid var(--gold)}
+.fv-quote svg{width:22px;height:22px;flex:none;color:var(--gold)}
+.fv-quote p{margin:0;font-family:var(--ff-display);font-style:italic;font-size:1.3rem;color:var(--indigo);line-height:1.3}
+.fv-quote cite{font-family:var(--ff-body);font-style:normal;font-size:.75rem;color:var(--muted);margin-left:.3rem}
+.fv-help{margin-top:1rem!important;padding:.85rem 1rem;border-radius:12px;background:rgba(46,125,91,.08);
+  border:1px solid rgba(46,125,91,.18);font-size:.9rem!important}
+.fv-classes{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin:1rem 0 0}
+.fv-classes div{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border-radius:12px;background:var(--ivory);
+  font-size:.86rem;font-weight:600;color:var(--indigo)}
+.fv-classes b{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-size:.95rem}
+.fv-classes .u{background:#b3261e}.fv-classes .b{background:#e0761b}.fv-classes .d{background:#d9a514}.fv-classes .p{background:#2e7d5b}
+.fv-say{margin-top:1rem;padding:1rem 1.1rem;border-radius:14px;background:var(--indigo);color:#fff}
+.fv-say-lbl{display:block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.4rem}
+.fv-say p{margin:0;font-size:.9rem;line-height:1.6;color:#e6e8f5;font-style:italic}
+.fv-credit{display:flex;gap:.45rem;align-items:flex-start;margin-top:1rem!important;font-size:.78rem!important;color:var(--muted)!important}
+.fv-credit svg{width:14px;height:14px;flex:none;margin-top:.15rem}
+.fv-credit a{color:var(--gold-deep);text-decoration:underline}
+.fv-foot{text-align:center;margin-top:1rem;color:var(--muted);font-size:.92rem}
+.fv-foot a{color:var(--gold-deep);font-weight:600;text-decoration:underline}
+@media(max-width:820px){
+  .fv-timeline::before{left:0;top:0;bottom:0}
+  .fv-item{grid-template-columns:1fr;gap:.8rem;padding-left:1.2rem}
+  .fv-date{flex-direction:row;align-self:flex-start;gap:.45rem;padding:.45rem .95rem;border-radius:100px}
+  .fv-date .d{font-size:1.5rem}
+  .fv-date.evergreen svg{width:20px;height:20px;margin:0}
+  .fv-date::before{content:"";position:absolute;left:calc(-1.2rem - 6px);top:50%;width:12px;height:12px;border-radius:50%;
+    background:var(--gold);transform:translateY(-50%);box-shadow:0 0 0 4px var(--ivory)}
+  .fv-card{grid-template-columns:1fr}
+  .fv-poster{aspect-ratio:16/10}
+}
+@media(max-width:420px){.fv-classes{grid-template-columns:1fr}}
+
+/* ---------- In chiesa: un luogo sacro da vivere con rispetto ---------- */
+.ic-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
+.ic-intro .lead{margin-top:1rem}
+.ic-motto{margin-top:1.4rem;font-family:var(--ff-display);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--indigo);line-height:1.35;
+  padding-left:1.1rem;border-left:3px solid var(--gold)}
+.ic-poster{justify-self:center;width:min(100%,300px);aspect-ratio:2/3;border-radius:18px;box-shadow:var(--shadow-lg);transform:rotate(1.5deg)}
+.ic-poster:hover{transform:rotate(0) translateY(-4px)}
+.ic-poster{transition:transform .5s var(--ease)}
+.ic-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.1rem}
+.ic-rule{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem 1.3rem 1.3rem;
+  box-shadow:var(--shadow-sm);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
+.ic-rule:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line-gold)}
+.ic-ico{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;margin-bottom:1rem;
+  background:linear-gradient(150deg,var(--indigo),var(--indigo-3));color:var(--gold-2);box-shadow:0 0 0 5px rgba(196,160,82,.14)}
+.ic-ico svg{width:26px;height:26px}
+.ic-rule h3{font-family:var(--ff-body);font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:.6rem}
+.ic-rule p{font-size:.9rem;color:#4a4a57;line-height:1.6;margin:0}
+.ic-rule .ic-key{margin-top:.8rem;font-family:var(--ff-display);font-style:italic;font-size:1.08rem;color:var(--gold-deep);line-height:1.35}
+.ic-sep{display:flex;align-items:center;justify-content:center;gap:1rem;margin:clamp(2.6rem,5vw,3.6rem) 0 1.6rem;text-align:center}
+.ic-sep::before,.ic-sep::after{content:"";height:1px;flex:1;max-width:180px;background:linear-gradient(90deg,transparent,var(--gold))}
+.ic-sep::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.ic-sep h3{font-family:var(--ff-body);font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--indigo);margin:0}
+.ic-virtues{display:grid;grid-template-columns:repeat(6,1fr);gap:.9rem}
+.ic-virtue{text-align:center;padding:1.2rem .8rem;border-radius:var(--radius);background:var(--ivory);border:1px solid var(--line-gold)}
+.ic-virtue .ic-ico{margin:0 auto .8rem;width:48px;height:48px;background:var(--paper);color:var(--gold-deep);box-shadow:none;border:1px solid var(--line-gold)}
+.ic-virtue .ic-ico svg{width:22px;height:22px}
+.ic-virtue h4{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:.45rem;font-family:var(--ff-body)}
+.ic-virtue p{font-size:.82rem;color:#55555f;line-height:1.5;margin:0}
+.ic-thanks{text-align:center;margin-top:clamp(2rem,4vw,2.8rem)}
+.ic-thanks p{font-family:var(--ff-display);font-style:italic;font-size:clamp(1.35rem,2.6vw,1.8rem);color:var(--indigo);margin:0}
+.ic-thanks small{display:block;margin-top:.5rem;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+@media(max-width:1020px){.ic-virtues{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.ic-intro{grid-template-columns:1fr}.ic-poster{width:min(70%,260px)}}
+@media(max-width:520px){.ic-virtues{grid-template-columns:repeat(2,1fr)}}
+
+/* Locandina a schermo intero */
+.poster-lb{position:fixed;inset:0;z-index:400;display:none;place-items:center;padding:clamp(3.5rem,6vw,4.5rem) 1rem 1.2rem;
+  background:rgba(9,12,30,.94);backdrop-filter:blur(10px)}
+.poster-lb.open{display:grid;animation:lbfade .3s var(--ease)}
+.poster-lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:.8rem;max-height:100%}
+.poster-lb img{max-width:min(94vw,1100px);max-height:calc(100vh - 8rem);object-fit:contain;border-radius:10px;box-shadow:0 30px 80px -30px rgba(0,0,0,.85)}
+.poster-lb figcaption{font-family:var(--ff-display);font-size:clamp(1.05rem,2.2vw,1.4rem);color:#fff;text-align:center}
+.poster-lb .lb-close{position:absolute;top:1rem;right:1rem}
