@@ -957,3 +957,28 @@ html,body{overflow-x:clip}
   .mary-foot{flex-direction:column;align-items:stretch;margin-top:.3rem}.mary-share{justify-content:center}}
 .mary-share{background:var(--paper);position:relative}
 @media(max-width:820px){.mary-card::before{display:none}}
+
+/* ---------- Fede e vita: condivisione di ogni avviso ---------- */
+.fv-share{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem .9rem;margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line-gold)}
+.fv-share-lbl{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.fv-share-btns{display:flex;flex-wrap:wrap;gap:.45rem}
+.sh{--c:var(--indigo);display:inline-flex;align-items:center;gap:.45rem;padding:.48rem .9rem .48rem .75rem;border-radius:100px;
+  font:600 .82rem/1 var(--ff-body);color:var(--indigo);background:var(--paper);border:1px solid rgba(35,42,82,.14);
+  cursor:pointer;text-decoration:none;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.sh svg{width:17px;height:17px;flex:none;color:var(--c);transition:color .25s var(--ease)}
+.sh:hover,.sh:focus-visible{transform:translateY(-2px);color:#fff;background:var(--c);border-color:var(--c);box-shadow:0 8px 18px -8px var(--c)}
+.sh:hover svg,.sh:focus-visible svg{color:#fff}
+.sh:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sh-wa{--c:#1faa55}
+.sh-fb{--c:#1877f2}
+.sh-ig{--c:#d62976}
+.sh-ig:hover,.sh-ig:focus-visible{background:linear-gradient(45deg,#feda75,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5);border-color:transparent}
+.sh-link{--c:var(--gold-deep)}
+.sh.done{--c:#2e7d5b;color:#fff;background:#2e7d5b;border-color:#2e7d5b}
+.sh.done svg{color:#fff}
+.fv-item:target .fv-card{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,160,82,.28),var(--shadow)}
+@media(max-width:560px){
+  .fv-share{flex-direction:column;align-items:stretch;gap:.6rem}
+  .fv-share-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .sh{justify-content:center;padding:.7rem .8rem;font-size:.86rem}
+}

@@ -296,9 +296,87 @@
     });
   }
 
+  /* ---------- Condivisione degli avvisi (Fede e vita): WhatsApp, Facebook, Instagram, copia link ----------
+     Il link condiviso è la pagina ponte /avviso/<id>.html (anteprima dedicata), che rimanda all'avviso. */
+  function initShareBars() {
+    var bars = $$('[data-share-bar]');
+    if (!bars.length) return;
+    var isEn = function () { return document.documentElement.lang === 'en'; };
+    var mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
+    function legacyCopy(text) {
+      return new Promise(function (ok, ko) {
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-100px;opacity:0'; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy') ? ok() : ko(); } catch (e) { ko(e); } document.body.removeChild(ta);
+      });
+    }
+    function copy(text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(function () { return legacyCopy(text); });
+      return legacyCopy(text);
+    }
+    function flash(btn) { btn.classList.add('done'); setTimeout(function () { btn.classList.remove('done'); }, 1800); }
+    bars.forEach(function (bar) {
+      var d = bar.dataset, file = null, loading = null;
+      var title = function () { return isEn() ? d.titleEn : d.titleIt; };
+      var when = function () { return isEn() ? d.whenEn : d.whenIt; };
+      // la locandina viene preparata in anticipo: la condivisione nativa deve partire subito dal tocco
+      function prep() {
+        if (loading || !window.fetch || !window.File) return loading;
+        loading = fetch(d.img).then(function (r) { return r.blob(); })
+          .then(function (b) { file = new File([b], d.file, { type: 'image/jpeg' }); return file; })
+          .catch(function () { loading = null; });
+        return loading;
+      }
+      var ig = $('[data-sh="ig"]', bar);
+      ['pointerenter', 'touchstart', 'focus'].forEach(function (ev) { ig.addEventListener(ev, prep, { passive: true, once: true }); });
+      if ('IntersectionObserver' in window && mobile) {
+        var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { prep(); io.disconnect(); } }, { rootMargin: '200px' });
+        io.observe(bar);
+      }
+      bar.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-sh]'); if (!btn) return;
+        var kind = btn.dataset.sh, url = d.url;
+        if (kind === 'wa') {
+          btn.href = 'https://wa.me/?text=' + encodeURIComponent('*' + title() + '*\n' + when() + '\n\n' + url);
+          return; // il link si apre da sé
+        }
+        if (kind === 'fb') {
+          if (!mobile) { e.preventDefault(); window.open(btn.href, 'fbshare', 'width=620,height=560,noopener'); }
+          return;
+        }
+        e.preventDefault();
+        if (kind === 'link') {
+          copy(url).then(function () { flash(btn); toast(isEn() ? 'Link copied' : 'Link copiato'); }, function () { toast(url); });
+          return;
+        }
+        // Instagram: non esiste un link di condivisione web. Dal telefono si apre il menu di sistema con la
+        // locandina (Storia, Post o Direct); dal computer si scarica la locandina e si copia il link.
+        var text = title() + ' — ' + url;
+        if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+          copy(url).catch(function () {});
+          navigator.share({ files: [file], title: title(), text: text }).catch(function () {});
+          return;
+        }
+        if (mobile && navigator.share && !file) {
+          prep(); navigator.share({ title: title(), text: text, url: url }).catch(function () {});
+          return;
+        }
+        var save = function (f) {
+          var a = document.createElement('a'), u = URL.createObjectURL(f); a.href = u; a.download = d.file;
+          document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+        };
+        if (file) save(file); else { var pr = prep(); if (pr) pr.then(function (f) { if (f) save(f); }); }
+        copy(url).catch(function () {});
+        flash(btn);
+        toast(isEn() ? 'Poster downloaded and link copied: post it on Instagram from your phone'
+                     : 'Locandina scaricata e link copiato: pubblicala su Instagram dal telefono');
+      });
+    });
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare(); initShareBars();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

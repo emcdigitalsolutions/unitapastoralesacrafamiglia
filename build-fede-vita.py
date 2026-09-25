@@ -1,4 +1,6 @@
 import json, re
+from urllib.parse import quote
+SITE = 'https://www.unitapastoralesacrafamiglia.it'
 T = open('vita-parrocchiale.html', encoding='utf-8').read()
 
 # ---------- HEAD ----------
@@ -44,6 +46,32 @@ I = {
  'quote': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.8-1.4C7.6 14.8 8.3 13.6 8.4 12H7V7Zm8 0h4v4c0 3-1.5 5-4 6l-.8-1.4c1.4-.8 2.1-2 2.2-3.6H15V7Z"/></svg>',
 }
 
+# icone social per la barra di condivisione di ogni avviso
+SH = {
+ 'wa': '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.06a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.17 8.17 0 1 1 6.84 3.72Zm4.5-6.12c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.41 1.02 2.58c.12.16 1.76 2.69 4.27 3.77.6.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>',
+ 'fb': '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21.9v-7.4H16l.4-3h-2.9V9.6c0-.86.25-1.45 1.49-1.45H16.6V5.47a21 21 0 0 0-2.3-.12c-2.28 0-3.84 1.39-3.84 3.95v2.2H7.9v3h2.56v7.4A10 10 0 1 1 13.5 21.9Z"/></svg>',
+ 'ig': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>',
+ 'link': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.1 1.1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.1-1.1"/></svg>',
+}
+
+def share_bar(key, poster, title_it, title_en, when_it, when_en):
+    """Barra «Condividi» dell'avviso: il link punta alla pagina ponte avviso/<key>.html
+    (anteprima dedicata per WhatsApp/Facebook, generata da build-share-avvisi.js),
+    che rimanda all'avviso nella bacheca. main.js → initShareBars()."""
+    url = f'{SITE}/avviso/{key}.html'
+    wa = 'https://wa.me/?text=' + quote(f'*{title_it}*\n{when_it}\n\n{url}', safe='')
+    fb = 'https://www.facebook.com/sharer/sharer.php?u=' + quote(url, safe='')
+    at = lambda v: v.replace('"', '&quot;')
+    return f'''<div class="fv-share" data-share-bar data-url="{url}" data-title-it="{at(title_it)}" data-title-en="{at(title_en)}" data-when-it="{at(when_it)}" data-when-en="{at(when_en)}" data-img="assets/img/avvisi/{poster}.jpg" data-file="{key}.jpg">
+              <span class="fv-share-lbl"><span data-lang-it>Condividi</span><span data-lang-en>Share</span></span>
+              <div class="fv-share-btns">
+                <a class="sh sh-wa" data-sh="wa" href="{wa}" target="_blank" rel="noopener">{SH["wa"]}<span>WhatsApp</span></a>
+                <a class="sh sh-fb" data-sh="fb" href="{fb}" target="_blank" rel="noopener">{SH["fb"]}<span>Facebook</span></a>
+                <button class="sh sh-ig" data-sh="ig" type="button">{SH["ig"]}<span>Instagram</span></button>
+                <button class="sh sh-link" data-sh="link" type="button">{SH["link"]}<span data-lang-it>Copia link</span><span data-lang-en>Copy link</span></button>
+              </div>
+            </div>'''
+
 CATS = {
   'parrocchia': ('La nostra comunità', 'Our community'),
   'chiesa': ('Chiesa universale', 'Universal Church'),
@@ -81,6 +109,7 @@ def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, t
             <ul class="fv-facts">{li(facts)}</ul>
             {extra}
             {credit}
+            {share_bar(key, poster, title_it, title_en, rows[0][1], rows[0][2])}
           </div>
         </div>
       </article>'''
@@ -383,3 +412,4 @@ open('fede-e-vita.html', 'w', encoding='utf-8').write(page)
 for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', page, re.S):
     json.loads(b)
 print('ok', len(page))
+print('-> ora rilancia: node build-share-avvisi.js  (anteprime social + pagine avviso/)')
