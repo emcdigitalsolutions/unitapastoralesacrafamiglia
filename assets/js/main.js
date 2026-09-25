@@ -219,9 +219,50 @@
     });
   }
 
+  /* =========================================================
+     8. Video YouTube (facade privacy)
+     L'iframe (youtube-nocookie) si carica SOLO quando l'utente preme play:
+     prima di allora nessuna richiesta a Google. I capitoli [data-yt-seek]
+     avviano il video dal secondo indicato.
+     ========================================================= */
+  function initVideo() {
+    function play(box, start) {
+      if (!box) return;
+      var id = box.getAttribute('data-yt');
+      var src = 'https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1' + (start ? '&start=' + start : '');
+      var f = box.querySelector('iframe');
+      if (!f) {
+        f = document.createElement('iframe');
+        f.title = box.getAttribute('data-yt-title') || 'Video';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        f.allowFullscreen = true;
+        box.appendChild(f);
+      }
+      f.src = src;
+      box.classList.add('playing');
+      var card = box.closest('.yt-card'); if (card) card.classList.add('playing');
+    }
+    $$('.yt[data-yt]').forEach(function (box) {
+      var b = box.querySelector('.yt-poster');
+      if (b) b.addEventListener('click', function () { play(box, 0); });
+    });
+    $$('[data-yt-seek]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var box = document.getElementById(btn.getAttribute('data-yt-target'));
+        play(box, parseInt(btn.getAttribute('data-yt-seek'), 10) || 0);
+        $$('[data-yt-seek].active').forEach(function (a) { a.classList.remove('active'); });
+        if (btn.closest('.chapters')) btn.classList.add('active');
+        var r = box.getBoundingClientRect();
+        if (r.top < 70 || r.bottom > window.innerHeight) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
