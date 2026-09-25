@@ -918,14 +918,14 @@ html,body{overflow-x:clip}
 }
 
 /* ---------- Home: Messaggio mensile della Regina della Pace ---------- */
-.mary-card{position:relative;display:grid;grid-template-columns:minmax(220px,.75fr) 1.6fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center;
+.mary-card{position:relative;display:grid;grid-template-columns:minmax(180px,.55fr) 1.8fr;gap:clamp(1.6rem,4vw,3.2rem);align-items:center;
   padding:clamp(1.6rem,4vw,3rem);border-radius:var(--radius-lg);border:1px solid var(--line-gold);overflow:hidden;
   background:radial-gradient(90% 120% at 0% 50%,rgba(122,156,214,.16),transparent 60%),
              radial-gradient(70% 90% at 100% 0%,rgba(196,160,82,.14),transparent 60%),var(--paper);
   box-shadow:var(--shadow)}
 .mary-card::before{content:"";position:absolute;right:-60px;bottom:-60px;width:240px;height:240px;border-radius:50%;
   border:1px solid rgba(196,160,82,.25);box-shadow:0 0 0 30px rgba(196,160,82,.05),0 0 0 60px rgba(196,160,82,.03);pointer-events:none}
-.mary-portrait{position:relative;justify-self:center;width:min(100%,300px);aspect-ratio:3/4}
+.mary-portrait{position:relative;justify-self:center;width:min(100%,230px);aspect-ratio:3/4}
 .mary-portrait::before{content:"";position:absolute;inset:-8%;border-radius:50%;
   background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(206,222,246,.55) 55%,transparent 75%);filter:blur(4px)}
 .mary-portrait img{position:relative;width:100%;height:100%;object-fit:cover;border-radius:48% 48% 44% 44% / 40% 40% 50% 50%;
@@ -941,7 +941,19 @@ html,body{overflow-x:clip}
 .mary-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.6rem}
 .mary-note{font-size:.78rem;color:var(--muted)}
 .mary-share{padding:.7rem 1.3rem}
-@media(max-width:820px){.mary-card{grid-template-columns:1fr}.mary-portrait{width:min(62%,240px)}
-  .mary-body{text-align:left}.mary-foot{flex-direction:column;align-items:stretch}.mary-share{justify-content:center}}
+/* Mobile: immagine piccola di lato al titolo, messaggio a tutta larghezza sotto */
+@media(max-width:820px){.mary-card{grid-template-columns:clamp(84px,24vw,130px) 1fr;column-gap:1rem;row-gap:1.1rem;align-items:center}
+  .mary-body{display:contents}
+  .mary-portrait{grid-column:1;grid-row:1;width:100%}
+  .mary-portrait::before{inset:-6%}
+  .mary-head{grid-column:2;grid-row:1;min-width:0}
+  .mary-text,.mary-foot{grid-column:1/-1}
+  .mary-chip{font-size:.6rem;letter-spacing:.12em;padding:.3rem .7rem}
+  .mary-body h2{font-size:clamp(1.3rem,5.4vw,1.8rem);line-height:1.15;margin:.55rem 0 .3rem}
+  .mary-date{margin:0;font-size:.7rem;letter-spacing:.1em}
+  .mary-date time{white-space:nowrap}
+  .mary-text{padding-left:1rem}
+  .mary-text p{font-size:1.08rem;line-height:1.5}
+  .mary-foot{flex-direction:column;align-items:stretch;margin-top:.3rem}.mary-share{justify-content:center}}
 .mary-share{background:var(--paper);position:relative}
 @media(max-width:820px){.mary-card::before{display:none}}
