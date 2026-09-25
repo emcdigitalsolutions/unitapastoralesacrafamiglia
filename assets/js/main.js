@@ -280,9 +280,25 @@
     });
   }
 
+  /* =========================================================
+     10. Condividi ([data-share-url]): condivisione nativa o copia del link
+     ========================================================= */
+  function initShare() {
+    $$('[data-share-url]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var en = document.documentElement.lang === 'en';
+        var url = b.getAttribute('data-share-url'), title = b.getAttribute('data-share-title') || document.title;
+        if (navigator.share) { navigator.share({ title: title, url: url }).catch(function () {}); return; }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(function () { toast(en ? 'Link copied — paste it where you like' : 'Link copiato: incollalo dove vuoi'); });
+        } else { toast(url); }
+      });
+    });
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
