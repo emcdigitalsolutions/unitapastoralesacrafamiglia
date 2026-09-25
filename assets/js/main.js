@@ -260,9 +260,27 @@
     });
   }
 
+  /* =========================================================
+     9. Copia IBAN (pulsanti [data-copy-iban] dentro .iban-box)
+     ========================================================= */
+  function initCopyIban() {
+    $$('[data-copy-iban]').forEach(function (cp) {
+      cp.addEventListener('click', function () {
+        var en = document.documentElement.lang === 'en';
+        var box = cp.closest('.iban-box');
+        var val = box && box.querySelector('.iban-val');
+        var iban = ((val && val.textContent) || '').replace(/\s+/g, '').trim();
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(iban).then(function () { toast(en ? 'IBAN copied' : 'IBAN copiato'); })
+            .catch(function () { toast(iban); });
+        } else { toast(iban); }
+      });
+    });
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

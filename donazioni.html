@@ -260,18 +260,6 @@
     if (link) { window.location.href = link; }
     else { (window.upsToast || window.alert)(en ? 'Online donations are being activated — for now please use the bank transfer.' : 'Le donazioni online sono in attivazione — per ora usa il bonifico bancario qui accanto.'); }
   });
-  document.querySelectorAll('[data-copy-iban]').forEach(function (cp) {
-    cp.addEventListener('click', function () {
-      var en = document.documentElement.lang === 'en';
-      var box = cp.closest('.iban-box');
-      var val = box && box.querySelector('.iban-val');
-      var iban = ((val && val.textContent) || '').replace(/\s+/g, '').trim();
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(iban).then(function () { (window.upsToast || window.alert)(en ? 'IBAN copied' : 'IBAN copiato'); })
-          .catch(function () { (window.upsToast || window.alert)(iban); });
-      } else { (window.upsToast || window.alert)(iban); }
-    });
-  });
 })();
 </script>
 </body>

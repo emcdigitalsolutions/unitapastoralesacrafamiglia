@@ -662,3 +662,45 @@ body.lb-lock{overflow:hidden}
 .chapters time{flex:none;min-width:3.1rem;font-size:.82rem;font-weight:700;color:var(--gold-deep);font-variant-numeric:tabular-nums}
 .vf-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
 @media(max-width:900px){.video-feature{grid-template-columns:1fr}}
+
+/* ---------- Raccolte fondi (home) ---------- */
+.fund-grid{display:grid;grid-template-columns:1.9fr 1fr;gap:1.6rem;align-items:stretch}
+.fund-card{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;background:var(--paper);
+  border:1px solid var(--line-gold);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.fund-media{position:relative;background:linear-gradient(180deg,#f7ebdb,#efe0c9);min-height:100%}
+.fund-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.fund-media::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;
+  background:linear-gradient(180deg,rgba(35,42,82,0),rgba(35,42,82,.35))}
+.fund-status{position:absolute;left:1rem;top:1rem;z-index:1;display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;
+  background:rgba(17,22,52,.72);backdrop-filter:blur(6px);border:1px solid rgba(220,192,130,.45);border-radius:100px;padding:.4rem .8rem}
+.fund-status i{width:8px;height:8px;border-radius:50%;background:#7ddc9a;box-shadow:0 0 0 0 rgba(125,220,154,.7);animation:fundpulse 2s infinite}
+@keyframes fundpulse{0%{box-shadow:0 0 0 0 rgba(125,220,154,.7)}70%{box-shadow:0 0 0 9px rgba(125,220,154,0)}100%{box-shadow:0 0 0 0 rgba(125,220,154,0)}}
+.fund-body{padding:clamp(1.6rem,3vw,2.4rem)}
+.fund-kicker{display:block;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.fund-body h3{font-size:clamp(1.6rem,2.8vw,2.15rem);margin:.45rem 0 .8rem;color:var(--indigo)}
+.fund-body > p{color:#4a4a57}
+.fund-ways{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:1.1rem}
+.fund-ways li{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;padding-top:1.1rem;border-top:1px solid var(--line)}
+.fund-ways strong{display:block;color:var(--indigo);font-size:.98rem;margin-bottom:.2rem}
+.fund-ways p{font-size:.9rem;color:var(--muted);margin:0}
+.fund-ways .iban-box{margin-top:.7rem;flex-wrap:wrap;gap:.35rem 1rem;padding:.75rem 1rem}
+.fund-ways .iban-val{white-space:nowrap;font-size:.92rem;letter-spacing:.02em;word-break:normal}
+@media(max-width:360px){.fund-ways .iban-val{white-space:normal}}
+.fw-ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--gold-deep);
+  background:rgba(196,160,82,.12);border:1px solid var(--line-gold)}
+.fw-ico svg{width:20px;height:20px}
+.fw-ico.lg{width:58px;height:58px;margin-bottom:1.3rem;color:var(--gold-2);background:rgba(196,160,82,.14);border-color:rgba(220,192,130,.4)}
+.fw-ico.lg svg{width:26px;height:26px}
+.fund-causale{margin-top:.6rem!important;font-size:.82rem!important}
+.fund-causale em{font-style:normal;font-weight:600;color:var(--indigo)}
+.fund-card.fund-general{grid-template-columns:1fr;background:linear-gradient(160deg,var(--indigo),var(--indigo-3));border-color:rgba(220,192,130,.3)}
+.fund-general .fund-body{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;height:100%}
+.fund-general h3{color:#fff}
+.fund-general .fund-kicker{color:var(--gold-2)}
+.fund-general .fund-body > p{color:#cdd0e6;margin-bottom:1.6rem}
+.fund-general .fund-body > p.fund-note{margin:1.3rem 0 0;font-size:.82rem;color:#9ea4c9}
+@media(max-width:1020px){.fund-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.fund-card{grid-template-columns:1fr}.fund-media{min-height:0;aspect-ratio:4/3}
+  .fund-media img{object-position:50% 8%}}
+@media(prefers-reduced-motion:reduce){.fund-status i{animation:none}}
