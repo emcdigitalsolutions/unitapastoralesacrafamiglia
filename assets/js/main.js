@@ -9,7 +9,7 @@
   /* ---------- Config ---------- */
   var CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxLCgN0-mHN86Dk37a5m-p2A3DgMjc8b__aCO_9oBA_amLUn5MlipebKalo5qNIoSWl/exec';
   var SITE_KEY = 'unitapastorale';
-  var CC_EMAIL = 'emcdigitalsolution@gmail.com';
+  // Nessuna copia dei messaggi a terzi: il modulo recapita SOLO alla casella della parrocchia.
   var CONSENT_KEY = 'ups-cookie-consent';   // 'all' | 'necessary'
   var LANG_KEY = 'emc-lang';                 // chiave condivisa siti EMC
   var GA_ID = '';                            // impostare G-XXXXXXXXXX quando disponibile
@@ -200,8 +200,7 @@
         name: (form.name && form.name.value || '').trim(),
         email: (form.email && form.email.value || '').trim(),
         phone: (form.phone && form.phone.value || '').trim(),
-        message: (form.message && form.message.value || '').trim(),
-        cc: CC_EMAIL
+        message: (form.message && form.message.value || '').trim()
       };
 
       fetch(CONTACT_ENDPOINT, {
