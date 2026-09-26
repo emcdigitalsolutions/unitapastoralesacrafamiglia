@@ -155,6 +155,17 @@
   }
 
   /* =========================================================
+     Chip temporanei ("dall'11 ottobre"): spariscono da soli a data raggiunta
+     ========================================================= */
+  function initUntil() {
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    $$('[data-until]').forEach(function (el) {
+      var d = new Date(el.getAttribute('data-until') + 'T00:00:00');
+      if (!isNaN(d) && today > d) el.classList.add('is-past');
+    });
+  }
+
+  /* =========================================================
      5. Footer year
      ========================================================= */
   function initYear() {
@@ -376,7 +387,7 @@
 
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare(); initShareBars();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare(); initShareBars(); initUntil();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

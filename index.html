@@ -100,6 +100,7 @@
         {"@type":"Question","name":"Quali parrocchie compongono l'Unità Pastorale Sacra Famiglia?","acceptedAnswer":{"@type":"Answer","text":"L'Unità Pastorale Sacra Famiglia riunisce la Parrocchia Gesù e Maria (Via Napoli) e la Parrocchia San Giuseppe (Piazza San Giuseppe), entrambe a Campobello di Licata, nell'Arcidiocesi di Agrigento."}},
         {"@type":"Question","name":"Chi è il parroco dell'Unità Pastorale Sacra Famiglia?","acceptedAnswer":{"@type":"Answer","text":"Il parroco è P. Marco Damanti, guida dell'Unità Pastorale dal 9 ottobre 2025, affiancato dal vicario parrocchiale don Augustino Japhet Mgovano."}},
         {"@type":"Question","name":"Come posso richiedere un sacramento?","acceptedAnswer":{"@type":"Answer","text":"Per Battesimo, Prima Comunione, Cresima, Matrimonio o altri sacramenti è possibile contattare la parrocchia via email all'indirizzo sacrafamiglia.campobello@diocesiag.it o rivolgersi direttamente ai sacerdoti al termine delle celebrazioni."}},
+        {"@type":"Question","name":"A che ora sono le Messe della domenica a Campobello di Licata?","acceptedAnswer":{"@type":"Answer","text":"Nell'Unità Pastorale Sacra Famiglia la domenica le Sante Messe sono alle 9:30 nella chiesa di Gesù e Maria, alle 11:00 nella chiesa di San Giuseppe, alle 18:00 nella chiesa di Gesù e Maria e alle 18:30 nella chiesa di San Giuseppe. Le Messe delle 11:00 e delle 18:00 si celebrano a partire da domenica 11 ottobre 2026. Dal lunedì al sabato la Santa Messa è alle 17:30."}},
         {"@type":"Question","name":"Quando si celebrano le feste principali?","acceptedAnswer":{"@type":"Answer","text":"La festa di San Giuseppe si celebra il 19 marzo con le tradizionali Tavole di San Giuseppe e la rappresentazione della Fuga in Egitto; la festa dell'Immacolata l'8 dicembre, con i tradizionali vamparotti presso la chiesa di Gesù e Maria."}}
       ]
     }
@@ -393,10 +394,22 @@
       <span class="eyebrow center" style="color:var(--gold-2)">Celebrazioni</span>
       <h2 data-lang-it>Gli orari delle celebrazioni</h2>
       <h2 data-lang-en>Times of the celebrations</h2>
-      <p data-lang-it>La preghiera scandisce la settimana nelle due chiese dell'Unità Pastorale.</p>
-      <p data-lang-en>Prayer marks the week in the two churches of the Pastoral Unit.</p>
+      <p data-lang-it>La preghiera scandisce la settimana nelle due chiese dell'Unità Pastorale, a cominciare dalla domenica.</p>
+      <p data-lang-en>Prayer marks the week in the two churches of the Pastoral Unit, starting with Sunday.</p>
     </div>
     <div class="grid g-3">
+      <!-- Domenica -->
+      <div class="hours hours-sun" id="domenica" data-reveal>
+        <div class="hh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg><span data-lang-it>Domenica</span><span data-lang-en>Sunday</span><span class="tag" data-lang-it>Sante Messe</span><span class="tag" data-lang-en>Holy Masses</span></div>
+        <ol class="sun-list">
+          <li><time>09:30</time><span class="sun-church"><span class="sun-lbl" data-lang-it>Santa Messa</span><span class="sun-lbl" data-lang-en>Holy Mass</span>Gesù e Maria</span></li>
+          <li class="is-from"><time>11:00</time><span class="sun-church"><span class="sun-lbl" data-lang-it>Santa Messa</span><span class="sun-lbl" data-lang-en>Holy Mass</span>San Giuseppe</span><span class="sun-from" data-until="2026-10-11"><span data-lang-it>dall'11 ottobre</span><span data-lang-en>from 11 October</span></span></li>
+          <li class="is-from"><time>18:00</time><span class="sun-church"><span class="sun-lbl" data-lang-it>Santa Messa</span><span class="sun-lbl" data-lang-en>Holy Mass</span>Gesù e Maria</span><span class="sun-from" data-until="2026-10-11"><span data-lang-it>dall'11 ottobre</span><span data-lang-en>from 11 October</span></span></li>
+          <li><time>18:30</time><span class="sun-church"><span class="sun-lbl" data-lang-it>Santa Messa</span><span class="sun-lbl" data-lang-en>Holy Mass</span>San Giuseppe</span></li>
+        </ol>
+        <div class="note" data-until="2026-10-11" data-lang-it>Le Messe delle 11:00 a San Giuseppe e delle 18:00 a Gesù e Maria si celebrano a partire da domenica 11 ottobre.</div>
+        <div class="note" data-until="2026-10-11" data-lang-en>The 11 am Mass at San Giuseppe and the 6 pm Mass at Gesù e Maria are celebrated from Sunday 11 October.</div>
+      </div>
       <div class="hours" data-reveal>
         <div class="hh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 8a4 4 0 0 0-4 4v8h8v-8a4 4 0 0 0-4-4ZM8 20h8"/></svg><span data-lang-it>Sante Messe</span><span data-lang-en>Holy Mass</span><span class="tag">Lun&ndash;Sab</span></div>
         <ul>
@@ -634,6 +647,13 @@
         <div class="ans">
           <span data-lang-it>Per Battesimo, Prima Comunione, Cresima, Matrimonio o altri sacramenti puoi scrivere a <a href="mailto:sacrafamiglia.campobello@diocesiag.it">sacrafamiglia.campobello@diocesiag.it</a> o rivolgerti ai sacerdoti al termine delle celebrazioni.</span>
           <span data-lang-en>For Baptism, First Communion, Confirmation, Marriage or other sacraments you can write to <a href="mailto:sacrafamiglia.campobello@diocesiag.it">sacrafamiglia.campobello@diocesiag.it</a> or speak to the priests after the celebrations.</span>
+        </div>
+      </details>
+      <details>
+        <summary><span><span data-lang-it>A che ora sono le Messe della domenica?</span><span data-lang-en>What time are the Sunday Masses?</span></span><span class="plus"></span></summary>
+        <div class="ans">
+          <span data-lang-it>La domenica: ore 9:30 a Gesù e Maria, ore 11:00 a San Giuseppe, ore 18:00 a Gesù e Maria e ore 18:30 a San Giuseppe. Le Messe delle 11:00 e delle 18:00 si celebrano a partire da domenica 11 ottobre. Dal lunedì al sabato la Santa Messa è alle 17:30.</span>
+          <span data-lang-en>On Sundays: 9:30 am at Gesù e Maria, 11 am at San Giuseppe, 6 pm at Gesù e Maria and 6:30 pm at San Giuseppe. The 11 am and 6 pm Masses are celebrated from Sunday 11 October. From Monday to Saturday Holy Mass is at 5:30 pm.</span>
         </div>
       </details>
       <details>
