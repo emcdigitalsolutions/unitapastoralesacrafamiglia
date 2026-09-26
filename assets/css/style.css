@@ -279,6 +279,7 @@ body.nav-open .nav-toggle span{background:#fff}
 .hours ul li{display:flex;justify-content:space-between;gap:1rem;padding:.95rem 1.5rem;border-bottom:1px solid var(--line);font-size:.97rem}
 .hours ul li:last-child{border-bottom:0}
 .hours ul li span:first-child{color:var(--ink);font-weight:500}
+.hours ul li span[data-lang-en]:nth-child(2){color:var(--ink);font-weight:500}
 .hours ul li span:last-child{color:var(--gold-deep);font-weight:600;font-variant-numeric:tabular-nums}
 .hours .note{padding:.9rem 1.5rem;background:var(--ivory-2);font-size:.85rem;color:var(--muted)}
 
