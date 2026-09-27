@@ -10,9 +10,9 @@ repl = {
     "<title>Vita Parrocchiale — gruppi, catechesi e carità · Unità Pastorale Sacra Famiglia</title>":
         "<title>Fede e vita concreta — avvisi e informazioni utili · Unità Pastorale Sacra Famiglia</title>",
     'content="La vita della comunità dell\'Unità Pastorale Sacra Famiglia: catechesi, coro liturgico, ministranti, Caritas, gruppi giovani e famiglie, e i tempi forti dell\'anno liturgico a Campobello di Licata."':
-        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: anno pastorale, catechismo, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
+        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», anno pastorale, catechismo, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
     'content="vita parrocchiale campobello, catechesi, caritas, gruppi giovani, coro liturgico, ministranti, anno liturgico"':
-        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
+        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, coro bambini matite colorate, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
     'href="https://www.unitapastoralesacrafamiglia.it/vita-parrocchiale.html">': 'href="https://www.unitapastoralesacrafamiglia.it/fede-e-vita.html">',
     '<meta property="og:title" content="Vita Parrocchiale — gruppi, catechesi e carità">': '<meta property="og:title" content="Fede e vita concreta — avvisi e informazioni utili">',
     '<meta property="og:description" content="Catechesi, coro, ministranti, Caritas, gruppi giovani e famiglie: la comunità che cammina insieme.">':
@@ -43,6 +43,7 @@ I = {
  'ext': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
  'info': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
  'infinity': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 8.2a5 5 0 1 1 0 7.6L12 12 5.8 8.2a5 5 0 1 0 0 7.6L12 12Z"/></svg>',
+ 'note': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
  'quote': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.8-1.4C7.6 14.8 8.3 13.6 8.4 12H7V7Zm8 0h4v4c0 3-1.5 5-4 6l-.8-1.4c1.4-.8 2.1-2 2.2-3.6H15V7Z"/></svg>',
 }
 
@@ -87,13 +88,16 @@ def when(rows):
         out += f'<div class="fv-when-row">{I[ico]}<span><span data-lang-it>{it}</span><span data-lang-en>{en}</span></span></div>'
     return out
 
-def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False):
-    date_html = (f'<div class="fv-date evergreen" aria-hidden="true">{I["infinity"]}<span class="m"><span data-lang-it>Sempre</span><span data-lang-en>Always</span></span><span class="y"><span data-lang-it>valido</span><span data-lang-en>useful</span></span></div>'
+def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False, weekly=None):
+    if weekly:
+        date_html = f'<div class="fv-date evergreen weekly" aria-hidden="true">{I["note"]}<span class="m"><span data-lang-it>{weekly[1]}</span><span data-lang-en>{weekly[2]}</span></span><span class="y"><span data-lang-it>{weekly[3]}</span><span data-lang-en>{weekly[4]}</span></span></div>'
+    else:
+      date_html = (f'<div class="fv-date evergreen" aria-hidden="true">{I["infinity"]}<span class="m"><span data-lang-it>Sempre</span><span data-lang-en>Always</span></span><span class="y"><span data-lang-it>valido</span><span data-lang-en>useful</span></span></div>'
                  if evergreen else
                  f'<div class="fv-date" aria-hidden="true"><span class="d">{d}</span><span class="m"><span data-lang-it>{m_it}</span><span data-lang-en>{m_en}</span></span><span class="y">{y}</span></div>')
     flag = f'<span class="fv-flag"><span data-lang-it>{flag_it}</span><span data-lang-en>{flag_en}</span></span>' if flag_it else ''
     return f'''
-      <article class="fv-item" id="{key}" data-cat="{cat}"{f' data-start="{start}" data-end="{end}"' if start else ''} data-reveal>
+      <article class="fv-item" id="{key}" data-cat="{cat}"{f' data-weekly="{weekly[0]}"' if weekly else ''}{f' data-start="{start}" data-end="{end}"' if start else ''} data-reveal>
         {date_html}
         <div class="fv-card">
           <button class="fv-poster" type="button" data-poster="assets/img/avvisi/{poster}.jpg" data-caption-it="{title_it}" data-caption-en="{title_en}" aria-label="Apri la locandina: {title_it}">
@@ -115,6 +119,21 @@ def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, t
       </article>'''
 
 items = []
+
+# 0) Coro dei bambini «Matite Colorate» — ogni venerdì 18:15, iscrizioni aperte
+items.append(item('coro-matite-colorate', 'parrocchia', '', '', '', '', '', '',
+  'coro-matite-colorate', 'Locandina: iscrizioni aperte al coro dei bambini «Matite Colorate», ogni venerdì alle 18:15 nella Chiesa di San Giuseppe',
+  'Coro dei bambini «Matite Colorate»: iscrizioni aperte', "Children's choir “Matite Colorate”: enrolment open",
+  [('clock', 'Ogni venerdì, alle ore 18:15', 'Every Friday at 6:15 pm'),
+   ('pin', 'Chiesa di San Giuseppe', 'Church of San Giuseppe')],
+  "La nostra Unità Pastorale invita tutti i bambini a vivere insieme la gioia del canto e della musica. «Matite Colorate» è un'occasione per stare insieme, fare amicizia e scoprire quanto è bello cantare e lodare il Signore con il cuore!",
+  "Our Pastoral Unit invites all children to share the joy of singing and music. “Matite Colorate” (Coloured Pencils) is a chance to be together, make friends and discover how beautiful it is to sing and praise the Lord with all their heart!",
+  [("Iscrizioni aperte a <strong>tutti i bambini</strong>: vi aspettiamo con gioia, non mancate!", "Enrolment is open to <strong>all children</strong>: we look forward to seeing you, don't miss it!"),
+   ("Tante piccole voci, tanti colori, un unico grande coro.", "Many little voices, many colours, one great choir."),
+   ("Per informazioni rivolgetevi ai sacerdoti in parrocchia oppure <a href=\"contatti.html\">scriveteci</a>.", "For information ask the priests at the parish or <a href=\"contatti.html\">write to us</a>.")],
+  extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«Cantare è bello, ma cantare per Dio lo è ancora di più!»</span><span data-lang-en>“Singing is beautiful, but singing for God is even more so!”</span></p></blockquote>',
+  flag_it='Iscrizioni aperte', flag_en='Enrolment open',
+  weekly=(5, 'Ogni venerdì', 'Every Friday', 'ore 18:15', '6:15 pm')))
 
 # 1) 1–7 ottobre — Rosario per la pace con Papa Leone XIV
 items.append(item('rosario-per-la-pace', 'chiesa', '2026-10-01', '2026-10-07', '1', 'ottobre', 'October', '2026',
@@ -239,6 +258,11 @@ lightbox = '''<!-- ===== LOCANDINA A SCHERMO INTERO ===== -->
     items.forEach(function (it) {
       var st = it.querySelector('.fv-status');
       it.classList.remove('is-past', 'is-next');
+      if (it.dataset.weekly) {
+        var w = (+it.dataset.weekly - now.getDay() + 7) % 7;
+        st.textContent = w === 0 ? (en() ? 'Today' : 'Oggi') : w === 1 ? (en() ? 'Tomorrow' : 'Domani') : (en() ? 'In ' + w + ' days' : 'Tra ' + w + ' giorni');
+        st.className = 'fv-status ' + (w === 0 ? 'now' : 'soon'); st.hidden = false; return;
+      }
       if (!it.dataset.start) return;
       var s = d(it.dataset.start), e = d(it.dataset.end || it.dataset.start), txt, cls;
       if (now > e) { txt = en() ? 'Ended' : 'Concluso'; cls = 'past'; it.classList.add('is-past'); }
@@ -304,6 +328,14 @@ ld = [
    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place("Chiesa di San Giuseppe", "Piazza San Giuseppe"),
    "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/catechismo-2026.jpg",
    "description": "Santa Messa solenne con la partecipazione delle famiglie. Iscrizioni aperte ai bambini di 7 anni (seconda elementare): modulo in parrocchia nei giorni di Messa.",
+   "organizer": org, "isAccessibleForFree": True},
+  {"@context": "https://schema.org", "@type": "Event", "name": "Coro dei bambini «Matite Colorate» — prove settimanali",
+   "startDate": "2026-10-02T18:15:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
+   "eventSchedule": {"@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Friday", "startTime": "18:15", "scheduleTimezone": "Europe/Rome"},
+   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place("Chiesa di San Giuseppe", "Piazza San Giuseppe"),
+   "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/coro-matite-colorate.jpg",
+   "description": "Iscrizioni aperte al coro dei bambini dell'Unità Pastorale Sacra Famiglia: ogni venerdì alle 18:15 nella Chiesa di San Giuseppe, per vivere insieme la gioia del canto e lodare il Signore.",
+   "audience": {"@type": "PeopleAudience", "audienceType": "Bambini"},
    "organizer": org, "isAccessibleForFree": True},
 ]
 ld_html = ''.join('<script type="application/ld+json">\n' + json.dumps(x, ensure_ascii=False) + '\n</script>\n' for x in ld)
