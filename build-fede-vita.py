@@ -118,6 +118,27 @@ def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, t
         </div>
       </article>'''
 
+DL_CATECHISMO = '''<div class="dl-box" id="moduli-catechismo">
+              <p class="dl-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-lang-it>Moduli da scaricare</span><span data-lang-en>Forms to download</span></p>
+              <div class="dl-list">
+                <a class="dl-item" id="modulo-iscrizione-catechismo" href="assets/doc/modulo-iscrizione-catechismo-2026-2027.pdf" target="_blank" rel="noopener" type="application/pdf">
+                  <span class="dl-ico" aria-hidden="true">PDF</span>
+                  <span class="dl-txt"><b><span data-lang-it>Modulo di iscrizione 2026/2027</span><span data-lang-en>Enrolment form 2026/2027</span></b><small><span data-lang-it>2 pagine · 115 KB</span><span data-lang-en>2 pages · 115 KB · in Italian</span></small></span>
+                  <span class="dl-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg></span>
+                </a>
+                <a class="dl-item" id="informativa-privacy-catechismo" href="assets/doc/informativa-privacy-catechismo.pdf" target="_blank" rel="noopener" type="application/pdf">
+                  <span class="dl-ico" aria-hidden="true">PDF</span>
+                  <span class="dl-txt"><b><span data-lang-it>Informativa e consenso privacy</span><span data-lang-en>Privacy notice and consent</span></b><small><span data-lang-it>1 pagina · 86 KB</span><span data-lang-en>1 page · 86 KB · in Italian</span></small></span>
+                  <span class="dl-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg></span>
+                </a>
+              </div>
+              <ol class="dl-steps">
+                <li><b>1</b><span data-lang-it>Stampa entrambi i moduli</span><span data-lang-en>Print both forms</span></li>
+                <li><b>2</b><span data-lang-it>Compila e firma (entrambi i genitori)</span><span data-lang-en>Fill in and sign (both parents)</span></li>
+                <li><b>3</b><span data-lang-it>Consegnali in parrocchia</span><span data-lang-en>Hand them in at the parish</span></li>
+              </ol>
+            </div>'''
+
 items = []
 
 # 0) Coro dei bambini «Matite Colorate» — ogni venerdì 18:15, iscrizioni aperte
@@ -169,7 +190,8 @@ items.append(item('anno-catechistico-2026-2027', 'parrocchia', '2026-10-11', '20
   "Sono aperte le iscrizioni al nuovo anno catechistico. Vi aspettiamo per iniziare insieme questo nuovo cammino di fede!",
   "Enrolment for the new catechism year is open. We look forward to starting this new journey of faith together!",
   [("Età per l'iscrizione: <strong>7 anni</strong> (seconda elementare).", "Enrolment age: <strong>7 years old</strong> (second year of primary school)."),
-   ("Il modulo di iscrizione si ritira in parrocchia nei giorni in cui viene celebrata la Santa Messa.", "The enrolment form can be collected at the parish on the days Holy Mass is celebrated.")],
+   ("Il modulo di iscrizione e l'informativa privacy si possono <strong>scaricare qui sotto</strong> oppure ritirare in parrocchia nei giorni in cui viene celebrata la Santa Messa.", "The enrolment form and the privacy notice can be <strong>downloaded below</strong> or collected at the parish on the days Holy Mass is celebrated.")],
+  extra=DL_CATECHISMO,
   flag_it='Iscrizioni aperte', flag_en='Enrolment open'))
 
 # 4) Carta Dedicata a te 2026–2027
@@ -327,7 +349,7 @@ ld = [
    "startDate": "2026-10-11T11:00:00+02:00", "endDate": "2026-10-11T12:15:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place("Chiesa di San Giuseppe", "Piazza San Giuseppe"),
    "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/catechismo-2026.jpg",
-   "description": "Santa Messa solenne con la partecipazione delle famiglie. Iscrizioni aperte ai bambini di 7 anni (seconda elementare): modulo in parrocchia nei giorni di Messa.",
+   "description": "Santa Messa solenne con la partecipazione delle famiglie. Iscrizioni aperte ai bambini di 7 anni (seconda elementare): modulo di iscrizione e informativa privacy scaricabili dal sito o disponibili in parrocchia nei giorni di Messa.",
    "organizer": org, "isAccessibleForFree": True},
   {"@context": "https://schema.org", "@type": "Event", "name": "Coro dei bambini «Matite Colorate» — prove settimanali",
    "startDate": "2026-10-02T18:15:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
