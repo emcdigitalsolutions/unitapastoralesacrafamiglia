@@ -1001,7 +1001,7 @@ html,body{overflow-x:clip}
 }
 
 /* ===== Moduli da scaricare (es. iscrizione catechismo) ===== */
-.dl-box{margin-top:1.3rem;padding:1.15rem 1.2rem 1.2rem;border-radius:16px;background:linear-gradient(160deg,#fff,var(--ivory,#faf5ec));border:1px solid var(--line-gold);scroll-margin-top:110px}
+.dl-box{text-align:left;margin-top:1.3rem;padding:1.15rem 1.2rem 1.2rem;border-radius:16px;background:linear-gradient(160deg,#fff,var(--ivory,#faf5ec));border:1px solid var(--line-gold);scroll-margin-top:110px}
 .dl-head{display:flex;align-items:center;gap:.55rem;margin:0 0 .85rem;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
 .dl-head svg{width:18px;height:18px;flex:none}
 .dl-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}
