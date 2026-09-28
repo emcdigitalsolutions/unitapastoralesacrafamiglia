@@ -10,9 +10,9 @@ repl = {
     "<title>Vita Parrocchiale — gruppi, catechesi e carità · Unità Pastorale Sacra Famiglia</title>":
         "<title>Fede e vita concreta — avvisi e informazioni utili · Unità Pastorale Sacra Famiglia</title>",
     'content="La vita della comunità dell\'Unità Pastorale Sacra Famiglia: catechesi, coro liturgico, ministranti, Caritas, gruppi giovani e famiglie, e i tempi forti dell\'anno liturgico a Campobello di Licata."':
-        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», anno pastorale, catechismo, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
+        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», anno pastorale, catechismo, corso di Cresima per gli adulti, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
     'content="vita parrocchiale campobello, catechesi, caritas, gruppi giovani, coro liturgico, ministranti, anno liturgico"':
-        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, coro bambini matite colorate, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
+        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, corso cresima adulti campobello, coro bambini matite colorate, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
     'href="https://www.unitapastoralesacrafamiglia.it/vita-parrocchiale.html">': 'href="https://www.unitapastoralesacrafamiglia.it/fede-e-vita.html">',
     '<meta property="og:title" content="Vita Parrocchiale — gruppi, catechesi e carità">': '<meta property="og:title" content="Fede e vita concreta — avvisi e informazioni utili">',
     '<meta property="og:description" content="Catechesi, coro, ministranti, Caritas, gruppi giovani e famiglie: la comunità che cammina insieme.">':
@@ -194,6 +194,20 @@ items.append(item('anno-catechistico-2026-2027', 'parrocchia', '2026-10-11', '20
   extra=DL_CATECHISMO,
   flag_it='Iscrizioni aperte', flag_en='Enrolment open'))
 
+# 3b) Corso di Cresima per gli adulti — primo incontro venerdì 16 ottobre, ore 19:00
+items.append(item('cresima-adulti-2026', 'parrocchia', '2026-10-16', '2026-10-16', '16', 'ottobre', 'October', '2026',
+  'cresima-adulti-2026', "Locandina della Comunità Ecclesiale di Campobello di Licata: aperte le iscrizioni al corso di Cresima per gli adulti, primo incontro venerdì 16 ottobre alle ore 19:00 nella Chiesa di San Giuseppe, con la colomba dello Spirito Santo e la croce tra le fiamme",
+  'Corso di Cresima per gli adulti: iscrizioni aperte', 'Confirmation course for adults: enrolment open',
+  [('clock', 'Venerdì 16 ottobre, ore 19:00 · primo incontro', 'Friday 16 October, 7 pm · first meeting'),
+   ('pin', 'Chiesa di San Giuseppe', 'Church of San Giuseppe')],
+  "Sono aperte le iscrizioni al corso di Cresima per gli adulti. Un'occasione per riscoprire la fede, prepararsi a ricevere il Sacramento della Cresima e vivere insieme un nuovo cammino.",
+  "Enrolment is open for the Confirmation course for adults. A chance to rediscover the faith, prepare to receive the Sacrament of Confirmation and walk a new path together.",
+  [("Il corso è rivolto a <strong>tutti gli adulti</strong> che desiderano ricevere il Sacramento della Confermazione.", "The course is open to <strong>all adults</strong> who wish to receive the Sacrament of Confirmation."),
+   ("Per iscriversi o avere informazioni rivolgetevi ai sacerdoti in parrocchia oppure <a href=\"contatti.html\">scriveteci</a>.", "To enrol or for information ask the priests at the parish or <a href=\"contatti.html\">write to us</a>."),
+   ("<strong>Passa parola!</strong> Ti aspettiamo!", "<strong>Spread the word!</strong> We look forward to seeing you!")],
+  extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«Riceverete la forza dallo Spirito Santo che scenderà su di voi, e di me sarete testimoni»</span><span data-lang-en>“You will receive power when the Holy Spirit comes upon you, and you will be my witnesses”</span> <cite>At 1,8</cite></p></blockquote>',
+  flag_it='Iscrizioni aperte', flag_en='Enrolment open'))
+
 # 4) Carta Dedicata a te 2026–2027
 items.append(item('carta-dedicata-a-te', 'vita', '2026-11-04', '2027-04-30', '4', 'novembre', 'November', '2026',
   'carta-dedicata-a-te-2026', 'Infografica: Carta Dedicata a te 2026–2027, 500 euro per ciascun anno e date importanti',
@@ -358,6 +372,13 @@ ld = [
    "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/coro-matite-colorate.jpg",
    "description": "Iscrizioni aperte al coro dei bambini dell'Unità Pastorale Sacra Famiglia: ogni venerdì alle 18:15 nella Chiesa di San Giuseppe, per vivere insieme la gioia del canto e lodare il Signore.",
    "audience": {"@type": "PeopleAudience", "audienceType": "Bambini"},
+   "organizer": org, "isAccessibleForFree": True},
+  {"@context": "https://schema.org", "@type": "Event", "name": "Corso di Cresima per gli adulti — primo incontro",
+   "startDate": "2026-10-16T19:00:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
+   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place("Chiesa di San Giuseppe", "Piazza San Giuseppe"),
+   "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/cresima-adulti-2026.jpg",
+   "description": "Aperte le iscrizioni al corso di Cresima per gli adulti: primo incontro venerdì 16 ottobre 2026 alle 19:00 nella Chiesa di San Giuseppe. Un'occasione per riscoprire la fede, prepararsi a ricevere il Sacramento della Cresima e vivere insieme un nuovo cammino.",
+   "audience": {"@type": "PeopleAudience", "audienceType": "Adulti"},
    "organizer": org, "isAccessibleForFree": True},
 ]
 ld_html = ''.join('<script type="application/ld+json">\n' + json.dumps(x, ensure_ascii=False) + '\n</script>\n' for x in ld)
