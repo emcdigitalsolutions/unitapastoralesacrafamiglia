@@ -385,9 +385,21 @@
     });
   }
 
+  /* ---------- Apre il <details> puntato dall'ancora (es. #matrimonio-concordatario) ---------- */
+  function initHashDetails() {
+    var open = function () {
+      var id = decodeURIComponent((location.hash || '').slice(1));
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (el && el.tagName === 'DETAILS' && !el.open) { el.open = true; el.scrollIntoView({ block: 'start' }); }
+    };
+    open();
+    window.addEventListener('hashchange', open);
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
-    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare(); initShareBars(); initUntil();
+    initLang(); initHeader(); initReveal(); initCookies(); initYear(); initForm(); initVideo(); initCopyIban(); initShare(); initShareBars(); initUntil(); initHashDetails();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
