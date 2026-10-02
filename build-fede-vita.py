@@ -10,9 +10,9 @@ repl = {
     "<title>Vita Parrocchiale — gruppi, catechesi e carità · Unità Pastorale Sacra Famiglia</title>":
         "<title>Fede e vita concreta — avvisi e informazioni utili · Unità Pastorale Sacra Famiglia</title>",
     'content="La vita della comunità dell\'Unità Pastorale Sacra Famiglia: catechesi, coro liturgico, ministranti, Caritas, gruppi giovani e famiglie, e i tempi forti dell\'anno liturgico a Campobello di Licata."':
-        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», anno pastorale, catechismo, corso di Cresima per gli adulti, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
+        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», doposcuola gratuito, anno pastorale, catechismo, corso di Cresima per gli adulti, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
     'content="vita parrocchiale campobello, catechesi, caritas, gruppi giovani, coro liturgico, ministranti, anno liturgico"':
-        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, corso cresima adulti campobello, coro bambini matite colorate, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
+        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, corso cresima adulti campobello, coro bambini matite colorate, doposcuola gratuito campobello di licata, oratorio giovanni paolo ii, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
     'href="https://www.unitapastoralesacrafamiglia.it/vita-parrocchiale.html">': 'href="https://www.unitapastoralesacrafamiglia.it/fede-e-vita.html">',
     '<meta property="og:title" content="Vita Parrocchiale — gruppi, catechesi e carità">': '<meta property="og:title" content="Fede e vita concreta — avvisi e informazioni utili">',
     '<meta property="og:description" content="Catechesi, coro, ministranti, Caritas, gruppi giovani e famiglie: la comunità che cammina insieme.">':
@@ -44,6 +44,7 @@ I = {
  'info': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
  'infinity': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 8.2a5 5 0 1 1 0 7.6L12 12 5.8 8.2a5 5 0 1 0 0 7.6L12 12Z"/></svg>',
  'note': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+ 'book': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h5v15H6a2 2 0 0 0-2 2ZM20 19V6a2 2 0 0 0-2-2h-5v15h5a2 2 0 0 1 2 2Z"/></svg>',
  'quote': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.8-1.4C7.6 14.8 8.3 13.6 8.4 12H7V7Zm8 0h4v4c0 3-1.5 5-4 6l-.8-1.4c1.4-.8 2.1-2 2.2-3.6H15V7Z"/></svg>',
 }
 
@@ -88,16 +89,16 @@ def when(rows):
         out += f'<div class="fv-when-row">{I[ico]}<span><span data-lang-it>{it}</span><span data-lang-en>{en}</span></span></div>'
     return out
 
-def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False, weekly=None):
+def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False, weekly=None, wico='note'):
     if weekly:
-        date_html = f'<div class="fv-date evergreen weekly" aria-hidden="true">{I["note"]}<span class="m"><span data-lang-it>{weekly[1]}</span><span data-lang-en>{weekly[2]}</span></span><span class="y"><span data-lang-it>{weekly[3]}</span><span data-lang-en>{weekly[4]}</span></span></div>'
+        date_html = f'<div class="fv-date evergreen weekly" aria-hidden="true">{I[wico]}<span class="m"><span data-lang-it>{weekly[1]}</span><span data-lang-en>{weekly[2]}</span></span><span class="y"><span data-lang-it>{weekly[3]}</span><span data-lang-en>{weekly[4]}</span></span></div>'
     else:
       date_html = (f'<div class="fv-date evergreen" aria-hidden="true">{I["infinity"]}<span class="m"><span data-lang-it>Sempre</span><span data-lang-en>Always</span></span><span class="y"><span data-lang-it>valido</span><span data-lang-en>useful</span></span></div>'
                  if evergreen else
                  f'<div class="fv-date" aria-hidden="true"><span class="d">{d}</span><span class="m"><span data-lang-it>{m_it}</span><span data-lang-en>{m_en}</span></span><span class="y">{y}</span></div>')
     flag = f'<span class="fv-flag"><span data-lang-it>{flag_it}</span><span data-lang-en>{flag_en}</span></span>' if flag_it else ''
     return f'''
-      <article class="fv-item" id="{key}" data-cat="{cat}"{f' data-weekly="{weekly[0]}"' if weekly else ''}{f' data-start="{start}" data-end="{end}"' if start else ''} data-reveal>
+      <article class="fv-item" id="{key}" data-cat="{cat}"{f' data-weekly="{weekly[0]}"' if weekly else ''}{f' data-start="{start}"' if start else ''}{f' data-end="{end}"' if end else ''} data-reveal>
         {date_html}
         <div class="fv-card">
           <button class="fv-poster" type="button" data-poster="assets/img/avvisi/{poster}.jpg" data-caption-it="{title_it}" data-caption-en="{title_en}" aria-label="Apri la locandina: {title_it}">
@@ -155,6 +156,20 @@ items.append(item('coro-matite-colorate', 'parrocchia', '', '', '', '', '', '',
   extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«Cantare è bello, ma cantare per Dio lo è ancora di più!»</span><span data-lang-en>“Singing is beautiful, but singing for God is even more so!”</span></p></blockquote>',
   flag_it='Iscrizioni aperte', flag_en='Enrolment open',
   weekly=(5, 'Ogni venerdì', 'Every Friday', 'ore 18:15', '6:15 pm')))
+
+# 0b) Doposcuola gratuito — ogni giovedì 15:30–17:30 all'Oratorio, dal 1° ottobre 2026
+items.append(item('doposcuola', 'parrocchia', '2026-10-01', '', '', '', '', '',
+  'doposcuola-2026', "Locandina della Comunità Ecclesiale di Campobello di Licata: servizio doposcuola gratuito tutti i giovedì dalle 15:30 alle 17:30 all'Oratorio, con bambini che studiano e disegnano insieme attorno a un tavolo. Tutti i bambini sono i benvenuti",
+  'Servizio doposcuola gratuito', 'Free after-school service',
+  [('clock', 'Tutti i giovedì, dalle 15:30 alle 17:30 · dal 1° ottobre', 'Every Thursday, 3:30–5:30 pm · from 1 October'),
+   ('pin', 'Oratorio Cittadino «Giovanni Paolo II»', '«Giovanni Paolo II» town Oratory')],
+  "È ripartito il doposcuola della nostra comunità: un servizio <strong>gratuito</strong> di aiuto nei compiti, accompagnamento, condivisione e crescita insieme. <strong>Tutti i bambini sono i benvenuti!</strong>",
+  "Our community's after-school club is back: a <strong>free</strong> service offering homework help, guidance, sharing and growing together. <strong>All children are welcome!</strong>",
+  [("Il servizio è <strong>gratuito</strong> e aperto a <strong>tutti i bambini</strong>.", "The service is <strong>free of charge</strong> and open to <strong>all children</strong>."),
+   ("Ogni giovedì pomeriggio, dalle <strong>15:30</strong> alle <strong>17:30</strong>, a partire dal 1° ottobre.", "Every Thursday afternoon, from <strong>3:30</strong> to <strong>5:30 pm</strong>, starting on 1 October."),
+   ("Per informazioni rivolgetevi ai sacerdoti in parrocchia oppure <a href=\"contatti.html\">scriveteci</a>.", "For information ask the priests at the parish or <a href=\"contatti.html\">write to us</a>.")],
+  flag_it='Gratuito', flag_en='Free',
+  weekly=(4, 'Ogni giovedì', 'Every Thursday', 'ore 15:30–17:30', '3:30–5:30 pm'), wico='book'))
 
 # 1) 1–7 ottobre — Rosario per la pace con Papa Leone XIV
 items.append(item('rosario-per-la-pace', 'chiesa', '2026-10-01', '2026-10-07', '1', 'ottobre', 'October', '2026',
@@ -372,6 +387,16 @@ ld = [
    "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/coro-matite-colorate.jpg",
    "description": "Iscrizioni aperte al coro dei bambini dell'Unità Pastorale Sacra Famiglia: ogni venerdì alle 18:15 nella Chiesa di San Giuseppe, per vivere insieme la gioia del canto e lodare il Signore.",
    "audience": {"@type": "PeopleAudience", "audienceType": "Bambini"},
+   "organizer": org, "isAccessibleForFree": True},
+  {"@context": "https://schema.org", "@type": "Event", "name": "Servizio doposcuola gratuito",
+   "startDate": "2026-10-01T15:30:00+02:00", "endDate": "2026-10-01T17:30:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
+   "eventSchedule": {"@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "15:30", "endTime": "17:30", "scheduleTimezone": "Europe/Rome"},
+   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+   "location": {"@type": "Place", "name": "Oratorio Cittadino «Giovanni Paolo II»", "address": {"@type": "PostalAddress", "addressLocality": "Campobello di Licata", "addressRegion": "AG", "postalCode": "92023", "addressCountry": "IT"}},
+   "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/doposcuola-2026.jpg",
+   "description": "Servizio doposcuola gratuito della Comunità ecclesiale di Campobello di Licata: tutti i giovedì dalle 15:30 alle 17:30 all'Oratorio, a partire dal 1° ottobre 2026. Aiuto nei compiti, accompagnamento, condivisione e crescita insieme: tutti i bambini sono i benvenuti.",
+   "audience": {"@type": "PeopleAudience", "audienceType": "Bambini"},
+   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://www.unitapastoralesacrafamiglia.it/fede-e-vita.html#doposcuola"},
    "organizer": org, "isAccessibleForFree": True},
   {"@context": "https://schema.org", "@type": "Event", "name": "Corso di Cresima per gli adulti — primo incontro",
    "startDate": "2026-10-16T19:00:00+02:00", "eventStatus": "https://schema.org/EventScheduled",

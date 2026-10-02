@@ -26,7 +26,7 @@ const JOBS = [
   [path.join(LIVATINO, 'ee12efb7-2f0c-41fe-8eb6-926cdd9a3e22.jpg'), 'evento-livatino.jpg',      1100, 74],
   [path.join(ACQUA,    'b18840e7-026d-4a69-8d70-49c005608353.jpg'), 'evento-acqua.jpg',         1200, 80],
   // Locandine (verticali)
-  ['doposcuola.jpg',  'doposcuola.jpg',      820, 84],
+  // (doposcuola: dal 2/10/2026 la locandina è in images/avvisi/doposcuola-2026.jpg → build-avvisi.js)
   ['orariomesse.jpg', 'locandina-orari.jpg', 850, 84],
 ];
 
