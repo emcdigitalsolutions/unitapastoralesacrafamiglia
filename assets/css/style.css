@@ -1075,3 +1075,14 @@ html,body{overflow-x:clip}
   .mat-more summary{padding:.9rem 1rem}.mm-body{padding:0 1rem 1.1rem}
   .mm-docs > li{padding:.8rem .85rem .85rem 2.8rem}.mm-docs > li::before{left:.75rem}
 }
+
+/* ---------- Gruppo Decoro Chiesa: card a tutta larghezza con i due turni ---------- */
+.decoro-card{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(1.2rem,3vw,2.6rem);align-items:center}
+.decoro-slots{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.decoro-slot{display:flex;flex-direction:column;gap:.55rem;background:var(--ivory-2);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:16px;padding:1.1rem 1.2rem}
+.decoro-slot .dc-church{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.decoro-slot .dc-row{display:flex;align-items:flex-start;gap:.55rem;font-size:.95rem;color:var(--indigo);line-height:1.4}
+.decoro-slot .dc-row > svg{width:16px;height:16px;flex:none;margin-top:.15rem;color:var(--gold-deep)}
+.decoro-slot b{font-weight:700}
+@media(max-width:900px){.decoro-card{grid-template-columns:1fr}}
+@media(max-width:520px){.decoro-slots{grid-template-columns:1fr}}

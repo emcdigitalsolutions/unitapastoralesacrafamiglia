@@ -10,9 +10,9 @@ repl = {
     "<title>Vita Parrocchiale — gruppi, catechesi e carità · Unità Pastorale Sacra Famiglia</title>":
         "<title>Fede e vita concreta — avvisi e informazioni utili · Unità Pastorale Sacra Famiglia</title>",
     'content="La vita della comunità dell\'Unità Pastorale Sacra Famiglia: catechesi, coro liturgico, ministranti, Caritas, gruppi giovani e famiglie, e i tempi forti dell\'anno liturgico a Campobello di Licata."':
-        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», doposcuola gratuito, anno pastorale, catechismo, corso di Cresima per gli adulti, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
+        'content="Avvisi della comunità, appuntamenti della Chiesa e informazioni utili per la vita di ogni giorno a Campobello di Licata: coro dei bambini «Matite Colorate», Coro del Sabato con chitarra, doposcuola gratuito, anno pastorale, catechismo, corso di Cresima per gli adulti, Rosario per la pace, Carta Dedicata a te, tempi di attesa del CUP."',
     'content="vita parrocchiale campobello, catechesi, caritas, gruppi giovani, coro liturgico, ministranti, anno liturgico"':
-        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, corso cresima adulti campobello, coro bambini matite colorate, doposcuola gratuito campobello di licata, oratorio giovanni paolo ii, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
+        'content="avvisi parrocchia campobello di licata, anno pastorale 2026 2027, iscrizioni catechismo, corso cresima adulti campobello, coro bambini matite colorate, coro del sabato chitarra, doposcuola gratuito campobello di licata, oratorio giovanni paolo ii, rosario per la pace, carta dedicata a te 2026, cup tempi di attesa intramoenia"',
     'href="https://www.unitapastoralesacrafamiglia.it/vita-parrocchiale.html">': 'href="https://www.unitapastoralesacrafamiglia.it/fede-e-vita.html">',
     '<meta property="og:title" content="Vita Parrocchiale — gruppi, catechesi e carità">': '<meta property="og:title" content="Fede e vita concreta — avvisi e informazioni utili">',
     '<meta property="og:description" content="Catechesi, coro, ministranti, Caritas, gruppi giovani e famiglie: la comunità che cammina insieme.">':
@@ -156,6 +156,21 @@ items.append(item('coro-matite-colorate', 'parrocchia', '', '', '', '', '', '',
   extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«Cantare è bello, ma cantare per Dio lo è ancora di più!»</span><span data-lang-en>“Singing is beautiful, but singing for God is even more so!”</span></p></blockquote>',
   flag_it='Iscrizioni aperte', flag_en='Enrolment open',
   weekly=(5, 'Ogni venerdì', 'Every Friday', 'ore 18:15', '6:15 pm')))
+
+# 0a) Coro del Sabato con chitarra — prove ogni giovedì 19:00–20:00, Chiesa di Gesù e Maria
+items.append(item('coro-del-sabato', 'parrocchia', '', '', '', '', '', '',
+  'coro-del-sabato', "Locandina: Coro del Sabato con chitarra, cantiamo insieme per lodare il Signore e rendere più bella la nostra preghiera. Prove ogni giovedì dalle 19:00 alle 20:00 presso la Chiesa di Gesù e Maria, Campobello di Licata",
+  'Coro del Sabato con chitarra', 'Saturday Choir with guitar',
+  [('clock', 'Prove ogni giovedì, dalle 19:00 alle 20:00', 'Rehearsals every Thursday, 7–8 pm'),
+   ('pin', 'Chiesa di Gesù e Maria', 'Church of Gesù e Maria')],
+  "<strong>Cantiamo insieme</strong> per lodare il Signore e rendere più bella la nostra preghiera! Il Coro del Sabato, accompagnato dalla chitarra, si ritrova per le prove ogni giovedì sera nella Chiesa di Gesù e Maria: chi ama cantare è il benvenuto.",
+  "<strong>Let's sing together</strong> to praise the Lord and make our prayer more beautiful! The Saturday Choir, accompanied by guitar, meets for rehearsals every Thursday evening in the Church of Gesù e Maria: anyone who loves singing is welcome.",
+  [("Prove <strong>ogni giovedì</strong>, dalle <strong>19:00</strong> alle <strong>20:00</strong>.", "Rehearsals <strong>every Thursday</strong>, from <strong>7</strong> to <strong>8 pm</strong>."),
+   ("Non servono esperienze particolari: basta il desiderio di cantare e di pregare insieme.", "No special experience needed: just the wish to sing and pray together."),
+   ("Per informazioni rivolgetevi ai sacerdoti in parrocchia oppure <a href=\"contatti.html\">scriveteci</a>.", "For information ask the priests at the parish or <a href=\"contatti.html\">write to us</a>.")],
+  extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«La musica del cuore, per il cuore di Dio.»</span><span data-lang-en>“Music from the heart, for the heart of God.”</span></p></blockquote>',
+  flag_it='Aperto a tutti', flag_en='Open to all',
+  weekly=(4, 'Ogni giovedì', 'Every Thursday', 'ore 19:00–20:00', '7–8 pm')))
 
 # 0b) Doposcuola gratuito — ogni giovedì 15:30–17:30 all'Oratorio, dal 1° ottobre 2026
 items.append(item('doposcuola', 'parrocchia', '2026-10-01', '', '', '', '', '',
@@ -387,6 +402,13 @@ ld = [
    "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/coro-matite-colorate.jpg",
    "description": "Iscrizioni aperte al coro dei bambini dell'Unità Pastorale Sacra Famiglia: ogni venerdì alle 18:15 nella Chiesa di San Giuseppe, per vivere insieme la gioia del canto e lodare il Signore.",
    "audience": {"@type": "PeopleAudience", "audienceType": "Bambini"},
+   "organizer": org, "isAccessibleForFree": True},
+  {"@context": "https://schema.org", "@type": "Event", "name": "Coro del Sabato con chitarra — prove settimanali",
+   "startDate": "2026-10-08T19:00:00+02:00", "endDate": "2026-10-08T20:00:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
+   "eventSchedule": {"@type": "Schedule", "repeatFrequency": "P1W", "byDay": "https://schema.org/Thursday", "startTime": "19:00", "endTime": "20:00", "scheduleTimezone": "Europe/Rome"},
+   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place("Chiesa di Gesù e Maria", "Via Napoli"),
+   "image": "https://www.unitapastoralesacrafamiglia.it/assets/img/avvisi/coro-del-sabato.jpg",
+   "description": "Prove del Coro del Sabato con chitarra dell'Unità Pastorale Sacra Famiglia: ogni giovedì dalle 19:00 alle 20:00 nella Chiesa di Gesù e Maria. Cantiamo insieme per lodare il Signore e rendere più bella la nostra preghiera.",
    "organizer": org, "isAccessibleForFree": True},
   {"@context": "https://schema.org", "@type": "Event", "name": "Servizio doposcuola gratuito",
    "startDate": "2026-10-01T15:30:00+02:00", "endDate": "2026-10-01T17:30:00+02:00", "eventStatus": "https://schema.org/EventScheduled",
