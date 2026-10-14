@@ -52,7 +52,7 @@ Finché non ci sono, il sito mostra segnaposto eleganti ("Foto in arrivo") e sfo
 
 1. Registrare il dominio.
 2. DNS: record **A** dell'apex → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`;
-   record **CNAME** `www` → `emcdigitalsolutions.github.io`.
+   record **CNAME** `www` → `unitapastoralesacrafamiglia.github.io` (account GitHub dedicato `unitapastoralesacrafamiglia`).
 3. Togliere `CNAME` dal `.gitignore` e committarlo (contiene `www.unitapastoralesacrafamiglia.it`).
 4. GitHub → Settings → Pages: custom domain + **Enforce HTTPS**.
 
