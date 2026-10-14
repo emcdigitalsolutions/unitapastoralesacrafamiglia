@@ -45,6 +45,7 @@ I = {
  'infinity': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.2 8.2a5 5 0 1 1 0 7.6L12 12 5.8 8.2a5 5 0 1 0 0 7.6L12 12Z"/></svg>',
  'note': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
  'book': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h5v15H6a2 2 0 0 0-2 2ZM20 19V6a2 2 0 0 0-2-2h-5v15h5a2 2 0 0 1 2 2Z"/></svg>',
+ 'bolt': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>',
  'quote': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.8-1.4C7.6 14.8 8.3 13.6 8.4 12H7V7Zm8 0h4v4c0 3-1.5 5-4 6l-.8-1.4c1.4-.8 2.1-2 2.2-3.6H15V7Z"/></svg>',
 }
 
@@ -89,9 +90,11 @@ def when(rows):
         out += f'<div class="fv-when-row">{I[ico]}<span><span data-lang-it>{it}</span><span data-lang-en>{en}</span></span></div>'
     return out
 
-def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False, weekly=None, wico='note'):
-    if weekly:
-        date_html = f'<div class="fv-date evergreen weekly" aria-hidden="true">{I[wico]}<span class="m"><span data-lang-it>{weekly[1]}</span><span data-lang-en>{weekly[2]}</span></span><span class="y"><span data-lang-it>{weekly[3]}</span><span data-lang-en>{weekly[4]}</span></span></div>'
+def item(key, cat, start, end, d, m_it, m_en, y, poster, poster_alt, title_it, title_en, rows, text_it, text_en, facts, extra='', credit='', flag_it='', flag_en='', evergreen=False, weekly=None, wico='note', badge=None):
+    # badge = (giornoJS|None, m_it, m_en, y_it, y_en): riquadro data con icona e due righe (es. «Tutto il 2026»)
+    if weekly or badge:
+        b = weekly or badge
+        date_html = f'<div class="fv-date evergreen weekly" aria-hidden="true">{I[wico]}<span class="m"><span data-lang-it>{b[1]}</span><span data-lang-en>{b[2]}</span></span><span class="y"><span data-lang-it>{b[3]}</span><span data-lang-en>{b[4]}</span></span></div>'
     else:
       date_html = (f'<div class="fv-date evergreen" aria-hidden="true">{I["infinity"]}<span class="m"><span data-lang-it>Sempre</span><span data-lang-en>Always</span></span><span class="y"><span data-lang-it>valido</span><span data-lang-en>useful</span></span></div>'
                  if evergreen else
@@ -238,7 +241,25 @@ items.append(item('cresima-adulti-2026', 'parrocchia', '2026-10-16', '2026-10-16
   extra=f'<blockquote class="fv-quote">{I["quote"]}<p><span data-lang-it>«Riceverete la forza dallo Spirito Santo che scenderà su di voi, e di me sarete testimoni»</span><span data-lang-en>“You will receive power when the Holy Spirit comes upon you, and you will be my witnesses”</span> <cite>At 1,8</cite></p></blockquote>',
   flag_it='Iscrizioni aperte', flag_en='Enrolment open'))
 
-# 4) Carta Dedicata a te 2026–2027
+# 4) Bonus sociale bollette 2026 — luce, gas, acqua, rifiuti (infografica UILM Novara)
+items.append(item('bonus-sociale-bollette-2026', 'vita', '2026-01-01', '2026-12-31', '', '', '', '',
+  'bonus-sociale-bollette-2026', 'Infografica: Bonus sociale bollette 2026, sconti su luce, gas, acqua e rifiuti per le famiglie con ISEE basso',
+  'Bonus sociale bollette 2026: sconti su luce, gas, acqua e rifiuti', '2026 utility bill social bonus: discounts on electricity, gas, water and waste',
+  [('info', "Valido per tutto il 2026 · riconosciuto in automatico con l'ISEE", "Valid throughout 2026 · granted automatically with the ISEE")],
+  "Le famiglie con un <strong>ISEE basso</strong> hanno diritto a uno sconto sulle utenze domestiche. <strong>Non serve una domanda separata</strong>: basta presentare la DSU (Dichiarazione Sostitutiva Unica) all'INPS per ottenere l'ISEE 2026 e, se si rientra nelle soglie, i bonus luce, gas e acqua arrivano direttamente in bolletta.",
+  "Families with a <strong>low ISEE</strong> (Italy's household means-test indicator) are entitled to a discount on household utilities. <strong>No separate application is needed</strong>: just submit the DSU (single self-declaration) to INPS to obtain the 2026 ISEE and, if you are within the thresholds, the electricity, gas and water bonuses are applied directly to your bills.",
+  [("<strong>ISEE fino a 9.796&nbsp;€</strong> per la maggior parte delle famiglie; <strong>fino a 20.000&nbsp;€</strong> per i nuclei con almeno 4 figli a carico.", "<strong>ISEE up to €9,796</strong> for most families; <strong>up to €20,000</strong> for households with at least 4 dependent children."),
+   ("<strong>Luce e gas</strong>: sconto sulla fornitura (per il gas varia in base al numero dei componenti, alla zona climatica e all'uso).", "<strong>Electricity and gas</strong>: a discount on the supply (for gas it depends on household size, climate zone and use)."),
+   ("<strong>Acqua</strong>: agevolazione sui consumi idrici essenziali.", "<strong>Water</strong>: a reduction on essential water consumption."),
+   ("<strong>Rifiuti</strong>: riduzione del <strong>25% della TARI</strong>, di norma riconosciuta l'anno successivo a quello dell'ISEE valido.", "<strong>Waste</strong>: a <strong>25% reduction of the TARI</strong> (waste tax), normally granted the year after the valid ISEE."),
+   ("<strong>Contributo straordinario 2026 di 115&nbsp;€</strong> sulla bolletta elettrica per chi era titolare del bonus sociale elettrico al 21 febbraio 2026, senza domanda.", "<strong>Extraordinary 2026 contribution of €115</strong> on the electricity bill for those who held the electricity social bonus on 21 February 2026, with no application."),
+   ("Il contratto della fornitura deve essere intestato a un componente del nucleo ISEE.", "The utility contract must be in the name of a member of the ISEE household.")],
+  extra=r'''<p class="fv-help"><span data-lang-it>La DSU si può presentare gratuitamente presso un CAF (Centro di Assistenza Fiscale) o sul sito dell'INPS. Per la riduzione della TARI rivolgiti all'Ufficio Tributi del Comune. Se hai bisogno di una mano, parlane con i sacerdoti o con la Caritas parrocchiale, e condividi l'informazione con chi potrebbe averne bisogno.</span><span data-lang-en>The DSU can be submitted free of charge at a CAF (tax assistance centre) or on the INPS website. For the TARI reduction contact the Municipality's tax office. If you need help, speak to the priests or the parish Caritas — and share this with anyone who might need it.</span></p>''',
+  credit=f'<p class="fv-credit">{I["info"]}<span><span data-lang-it>Grafica</span><span data-lang-en>Artwork</span>: UILM Novara · <span data-lang-it>verifica sempre le condizioni applicabili al tuo caso.</span><span data-lang-en>always check the conditions that apply to you.</span></span></p>',
+  flag_it='Senza domanda', flag_en='No application', wico='bolt',
+  badge=(None, 'Tutto il', 'All of', '2026', '2026')))
+
+# 5) Carta Dedicata a te 2026–2027
 items.append(item('carta-dedicata-a-te', 'vita', '2026-11-04', '2027-04-30', '4', 'novembre', 'November', '2026',
   'carta-dedicata-a-te-2026', 'Infografica: Carta Dedicata a te 2026–2027, 500 euro per ciascun anno e date importanti',
   'Carta «Dedicata a te» 2026–2027', '“Dedicata a te” card 2026–2027',
@@ -252,7 +273,7 @@ items.append(item('carta-dedicata-a-te', 'vita', '2026-11-04', '2027-04-30', '4'
   extra='<p class="fv-help"><span data-lang-it>Per sapere se rientri tra i beneficiari rivolgiti ai Servizi sociali del Comune. Se hai bisogno di una mano, parlane con i sacerdoti o con la Caritas parrocchiale: condividi l\'informazione con chi potrebbe averne bisogno.</span><span data-lang-en>To find out whether you are a beneficiary, contact the Municipality\'s social services. If you need help, speak to the priests or the parish Caritas — and share this with anyone who might need it.</span></p>',
   credit=f'<p class="fv-credit">{I["info"]}<span><span data-lang-it>Grafica</span><span data-lang-en>Artwork</span>: Giovanna Cutri</span></p>'))
 
-# 5) CUP pieno — sempre valido
+# 6) CUP pieno — sempre valido
 extra_cup = '''<div class="fv-classes" role="list">
               <div role="listitem"><b class="u">U</b><span><span data-lang-it>entro 72 ore</span><span data-lang-en>within 72 hours</span></span></div>
               <div role="listitem"><b class="b">B</b><span><span data-lang-it>entro 10 giorni</span><span data-lang-en>within 10 days</span></span></div>
