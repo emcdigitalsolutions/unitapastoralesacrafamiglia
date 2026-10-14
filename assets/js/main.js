@@ -1,15 +1,15 @@
 /* =============================================================
    Unità Pastorale Sacra Famiglia — main.js
    i18n IT/EN · header · nav mobile · reveal · cookie + maps gating
-   · Consent Mode v2 · form contatti  ·  EMC Digital Solutions
+   · Consent Mode v2 · form contatti (mailto) ·  EMC Digital Solutions
    ============================================================= */
 (function () {
   'use strict';
 
   /* ---------- Config ---------- */
-  var CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxLCgN0-mHN86Dk37a5m-p2A3DgMjc8b__aCO_9oBA_amLUn5MlipebKalo5qNIoSWl/exec';
-  var SITE_KEY = 'unitapastorale';
-  // Nessuna copia dei messaggi a terzi: il modulo recapita SOLO alla casella della parrocchia.
+  // Il modulo NON invia nulla: prepara l'email e apre il programma di posta dell'utente (mailto:).
+  // Nessun server intermedio, nessuna copia dei messaggi a terzi.
+  var PARISH_EMAIL = 'sacrafamiglia.campobello@diocesiag.it';
   var CONSENT_KEY = 'ups-cookie-consent';   // 'all' | 'necessary'
   var LANG_KEY = 'emc-lang';                 // chiave condivisa siti EMC
   var GA_ID = '';                            // impostare G-XXXXXXXXXX quando disponibile
@@ -189,42 +189,41 @@
   window.upsToast = toast;
 
   /* =========================================================
-     7. Form contatti (handler isolato + no-cors + toast)
+     7. Form contatti → email precompilata nel programma di posta dell'utente
      ========================================================= */
   function initForm() {
     var form = $('#contact-form');
     if (!form) return;
+    var fallback = $('#mail-fallback'), lastText = '';
+    function copyText(text, okMsg) {
+      var done = function () { toast(okMsg); };
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, function () { prompt('', text); }); return; }
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;top:-100px;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { prompt('', text); }
+      document.body.removeChild(ta);
+    }
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var en = document.documentElement.lang === 'en';
-      var privacy = form.querySelector('[name="privacy"]');
-      if (privacy && !privacy.checked) {
-        toast(en ? 'Please accept the Privacy Policy.' : 'Accetta la Privacy Policy per procedere.');
+      var name = (form.name && form.name.value || '').trim(),
+          phone = (form.phone && form.phone.value || '').trim(),
+          message = (form.message && form.message.value || '').trim();
+      if (!name || !message) {
+        toast(en ? 'Please enter your name and message.' : 'Scrivi il tuo nome e il messaggio.');
+        (name ? form.message : form.name).focus();
         return;
       }
-      var btn = form.querySelector('[type="submit"]');
-      var orig = btn ? btn.innerHTML : '';
-      if (btn) { btn.disabled = true; btn.innerHTML = en ? 'Sending…' : 'Invio in corso…'; }
-
-      var payload = {
-        site: SITE_KEY,
-        name: (form.name && form.name.value || '').trim(),
-        email: (form.email && form.email.value || '').trim(),
-        phone: (form.phone && form.phone.value || '').trim(),
-        message: (form.message && form.message.value || '').trim()
-      };
-
-      fetch(CONTACT_ENDPOINT, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      }).then(function () {
-        form.reset();
-        toast(en ? 'Message sent. Thank you!' : 'Messaggio inviato. Grazie!');
-      }).catch(function () {
-        toast(en ? 'Error — please email us directly.' : 'Errore — scrivici via email.');
-      }).finally(function () {
-        if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+      var subject = (en ? 'Message from the website — ' : 'Messaggio dal sito — ') + name;
+      lastText = message + '\n\n— ' + name + (phone ? '\n' + (en ? 'Phone: ' : 'Telefono: ') + phone : '');
+      if (fallback) fallback.hidden = false;
+      window.location.href = 'mailto:' + PARISH_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lastText);
+    });
+    $$('[data-copy-mail]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var en = document.documentElement.lang === 'en';
+        if (btn.getAttribute('data-copy-mail') === 'to') copyText(PARISH_EMAIL, en ? 'Address copied' : 'Indirizzo copiato');
+        else copyText(lastText, en ? 'Message copied' : 'Messaggio copiato');
       });
     });
   }

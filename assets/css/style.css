@@ -368,6 +368,15 @@ form input,form textarea{
 form input:focus,form textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,160,82,.15)}
 form textarea{resize:vertical;min-height:130px}
 .check{display:flex;gap:.6rem;align-items:flex-start;font-size:.85rem;color:var(--muted)}
+/* modulo contatti via mailto: nota + riquadro di riserva */
+.form-note{display:flex;gap:.7rem;align-items:flex-start;font-size:.86rem;color:var(--muted);line-height:1.55;
+  background:var(--ivory-2);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin-top:.4rem}
+.form-note svg{width:20px;height:20px;flex:none;color:var(--gold-deep);margin-top:.1rem}
+.form-note strong{color:var(--indigo)}
+.mail-fallback{margin-top:1.1rem;padding:1rem 1.1rem;border:1px dashed var(--line-gold);border-radius:12px;font-size:.9rem;color:#43434f}
+.mail-fallback a{overflow-wrap:anywhere}
+.mf-btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+.mf-btns .btn{padding:.6rem 1.1rem;font-size:.88rem}
 .check input{width:auto;margin-top:.25rem}
 .check a{color:var(--gold-deep);text-decoration:underline}
 

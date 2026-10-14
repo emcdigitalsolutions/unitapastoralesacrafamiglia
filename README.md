@@ -58,9 +58,10 @@ Finché non ci sono, il sito mostra segnaposto eleganti ("Foto in arrivo") e sfo
 
 ## Modulo di contatto
 
-Invia all'endpoint Google Apps Script condiviso EMC con `site: 'unitapastorale'`
-(recapito: `sacrafamiglia.campobello@diocesiag.it`, CC EMC). Il sito va aggiunto alla config
-`SITES` dell'Apps Script.
+Nessun backend: il modulo prepara l'email (oggetto + testo con nome e telefono) e apre il
+programma di posta dell'utente con `mailto:sacrafamiglia.campobello@diocesiag.it`
+(`initForm()` in `assets/js/main.js`). Se non si apre nulla compare un riquadro con
+«Copia il messaggio» / «Copia l'indirizzo». Il sito non invia né conserva dati personali.
 
 ## Rigenerare gli asset (icone + immagine OG)
 

@@ -106,10 +106,6 @@
             <input type="text" id="name" name="name" required autocomplete="name" data-ph-it="Il tuo nome" data-ph-en="Your name">
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email" data-ph-it="La tua email" data-ph-en="Your email">
-          </div>
-          <div class="field">
             <label for="phone" data-lang-it>Telefono (facoltativo)</label><label for="phone" data-lang-en>Phone (optional)</label>
             <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel" data-ph-it="Il tuo numero" data-ph-en="Your number">
           </div>
@@ -117,15 +113,23 @@
             <label for="message" data-lang-it>Messaggio</label><label for="message" data-lang-en>Message</label>
             <textarea id="message" name="message" required data-ph-it="Come possiamo aiutarti?" data-ph-en="How can we help you?"></textarea>
           </div>
-          <label class="check">
-            <input type="checkbox" name="privacy" required>
-            <span data-lang-it>Ho letto e accetto la <a href="privacy.html">Privacy Policy</a>.</span>
-            <span data-lang-en>I have read and accept the <a href="privacy.html">Privacy Policy</a>.</span>
-          </label>
+          <p class="form-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span data-lang-it>Premendo il pulsante si apre il <strong>tuo programma di posta</strong> con il messaggio già pronto per la parrocchia: controllalo e invialo tu. Il sito non invia né conserva i tuoi dati (<a href="privacy.html">Privacy</a>).</span>
+            <span data-lang-en>Pressing the button opens <strong>your email app</strong> with the message ready for the parish: check it and send it yourself. The site does not send or store your data (<a href="privacy.html">Privacy</a>).</span>
+          </p>
           <button type="submit" class="btn btn-gold btn-lg mt-2" style="width:100%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            <span data-lang-it>Invia messaggio</span><span data-lang-en>Send message</span>
+            <span data-lang-it>Scrivi con la tua email</span><span data-lang-en>Write with your email</span>
           </button>
+          <div class="mail-fallback" id="mail-fallback" hidden>
+            <p data-lang-it><strong>Non si è aperto nulla?</strong> Copia il messaggio e incollalo in una nuova email a <a href="mailto:sacrafamiglia.campobello@diocesiag.it">sacrafamiglia.campobello@diocesiag.it</a>.</p>
+            <p data-lang-en><strong>Nothing opened?</strong> Copy the message and paste it into a new email to <a href="mailto:sacrafamiglia.campobello@diocesiag.it">sacrafamiglia.campobello@diocesiag.it</a>.</p>
+            <div class="mf-btns">
+              <button type="button" class="btn btn-outline" data-copy-mail="text"><span data-lang-it>Copia il messaggio</span><span data-lang-en>Copy the message</span></button>
+              <button type="button" class="btn btn-outline" data-copy-mail="to"><span data-lang-it>Copia l'indirizzo</span><span data-lang-en>Copy the address</span></button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
